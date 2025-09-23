@@ -7,19 +7,19 @@ type EnemyAnimSet = { idle: AnimSpec; run: AnimSpec; attack: AnimSpec }
 
 const ENEMY_ANIMS: Record<EnemyKey, EnemyAnimSet> = {
   npc1: {
-    idle: { folder: '/assets/sprites/2-Enemy-Bald Pirate/1-Idle', frames: 34, frameRate: 12 },
-    run: { folder: '/assets/sprites/2-Enemy-Bald Pirate/2-Run', frames: 14, frameRate: 14 },
-    attack: { folder: '/assets/sprites/2-Enemy-Bald Pirate/7-Attack', frames: 12, frameRate: 10 },
+    idle: { folder: '/assets/sprites/enemies/enemy-bald-pirate/idle', frames: 34, frameRate: 12 },
+    run: { folder: '/assets/sprites/enemies/enemy-bald-pirate/run', frames: 14, frameRate: 14 },
+    attack: { folder: '/assets/sprites/enemies/enemy-bald-pirate/attack', frames: 12, frameRate: 10 },
   },
   npc2: {
-    idle: { folder: '/assets/sprites/3-Enemy-Cucumber/1-Idle', frames: 36, frameRate: 12 },
-    run: { folder: '/assets/sprites/3-Enemy-Cucumber/2-Run', frames: 12, frameRate: 14 },
-    attack: { folder: '/assets/sprites/3-Enemy-Cucumber/7-Attack', frames: 11, frameRate: 10 },
+    idle: { folder: '/assets/sprites/enemies/enemy-cucumber/idle', frames: 36, frameRate: 12 },
+    run: { folder: '/assets/sprites/enemies/enemy-cucumber/run', frames: 12, frameRate: 14 },
+    attack: { folder: '/assets/sprites/enemies/enemy-cucumber/attack', frames: 11, frameRate: 10 },
   },
   npc3: {
-    idle: { folder: '/assets/sprites/4-Enemy-Big Guy/1-Idle', frames: 38, frameRate: 10 },
-    run: { folder: '/assets/sprites/4-Enemy-Big Guy/2-Run', frames: 16, frameRate: 12 },
-    attack: { folder: '/assets/sprites/4-Enemy-Big Guy/7-Attack', frames: 11, frameRate: 8 },
+    idle: { folder: '/assets/sprites/enemies/enemy-big-guy/idle', frames: 38, frameRate: 10 },
+    run: { folder: '/assets/sprites/enemies/enemy-big-guy/run', frames: 16, frameRate: 12 },
+    attack: { folder: '/assets/sprites/enemies/enemy-big-guy/attack', frames: 11, frameRate: 8 },
   },
 }
 
@@ -28,7 +28,10 @@ export function preloadEnemyIdleFrames(scene: Phaser.Scene) {
     const spec = set.idle
     for (let i = 1; i <= spec.frames; i++) {
       const key = `${k}_idle_${i}`
-      const url = `${spec.folder}/${i}.png`
+      const ii = String(i).padStart(2, '0')
+      const parts = spec.folder.split('/')
+      const base = parts[parts.length - 1]
+      const url = `${spec.folder}/${base}-${ii}.png`
       if (!scene.textures.exists(key)) scene.load.image(key, url)
     }
   }
@@ -43,7 +46,10 @@ export function preloadEnemyRunAttackFrames(scene: Phaser.Scene) {
     for (const { prefix, spec } of toLoad) {
       for (let i = 1; i <= spec.frames; i++) {
         const key = `${k}_${prefix}_${i}`
-        const url = `${spec.folder}/${i}.png`
+        const ii = String(i).padStart(2, '0')
+        const parts = spec.folder.split('/')
+        const base = parts[parts.length - 1]
+        const url = `${spec.folder}/${base}-${ii}.png`
         if (!scene.textures.exists(key)) scene.load.image(key, url)
       }
     }
@@ -286,44 +292,24 @@ export function placeDecorations(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilem
   const decoLayer = map.getObjectLayer('Decoration')
   if (decoLayer && decoLayer.objects) {
     decoLayer.objects.forEach((obj: any) => {
-      let key: string | null = null
-      if (obj.image) {
-        const img = String(obj.image)
-        if (img.includes('2-Door')) key = 'door_closed'
-        else if (img.includes('Barrel.png')) key = 'barrel'
-        else if (img.includes('Table.png')) key = 'table'
-        else if (img.includes('Blue Bottle')) key = 'bottle_blue'
-        else if (img.includes('Red Bottle')) key = 'bottle_red'
-        else if (img.includes('Skull.png')) key = 'skull'
-        else if (img.includes('Window Light')) {
-          if (img.indexOf('1.png') !== -1) key = 'window_light_1'
-          else key = 'window_light_2'
-        } else if (img.includes('6-Candle')) key = 'candle_1'
-        else if (img.includes('Chair.png')) key = 'chair'
-        else if (img.includes('Heart.png')) key = 'heart'
-        else if (img.includes('9-Small Chain')) key = 'small_chain'
-        else if (img.includes('10-Big Chain')) key = 'big_chain'
+      const keyMap: Record<string,string> = {
+        door: 'door_closed',
+        barrel: 'barrel',
+        barrel_top: 'barrel',
+        table: 'table',
+        bottle1: 'bottle_blue',
+        bottle2: 'bottle_red',
+        skull: 'skull',
+        windowA: 'window_light_1',
+        windowB: 'window_light_2',
+        candle1: 'candle_1',
+        chain1: 'small_chain',
+        chain2: 'small_chain',
+        chain3: 'small_chain',
+        chain_big: 'big_chain',
+        heartUI: 'heart',
       }
-      if (!key) {
-        const keyMap: Record<string,string> = {
-          door: 'door_closed',
-          barrel: 'barrel',
-          barrel_top: 'barrel',
-          table: 'table',
-          bottle1: 'bottle_blue',
-          bottle2: 'bottle_red',
-          skull: 'skull',
-          windowA: 'window_light_1',
-          windowB: 'window_light_2',
-          candle1: 'candle_1',
-          chain1: 'small_chain',
-          chain2: 'small_chain',
-          chain3: 'small_chain',
-          chain_big: 'big_chain',
-          heartUI: 'heart',
-        }
-        key = keyMap[obj.name] || null
-      }
+      let key: string | null = keyMap[obj?.name] || keyMap[obj?.type] || null
       if (key) {
         const placed = scene.add.image(obj.x, obj.y, key)
         placed.setOrigin(0, 0)

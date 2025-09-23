@@ -1,0 +1,78 @@
+[
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemies/enemy-bald-pirate"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemies/enemy-cucumber"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemies/enemy-big-guy"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemies/enemy-cannon"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/door"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/candle"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/small-chain"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/big-chain"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/other-objects"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/window-light",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/props/window-light"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/health-bar",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/ui/health-bar"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/ui/heart"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/ui/bomb-bar"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/ui/interrogation-dialog"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/ui/exclamation-dialog"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/particles/run-particles"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/particles/jump-particles"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/particles/fall-particles"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/particles/bomb"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/11-Health Bar/Health Bar.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/health-bar/health-bar-health-bar.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/11-Health Bar/Heart.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/health-bar/health-bar-heart.png"
+  }
+]

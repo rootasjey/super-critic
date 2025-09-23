@@ -26,6 +26,8 @@ function toKebabBase(name) {
   let n = name.replace(/^\d+[-_\s]*/, '')
   // Replace separators with space
   n = n.replace(/[._]+/g, ' ')
+  // Expand plus to word for cleaner URLs
+  n = n.replace(/[+]/g, ' plus ')
   // Normalize camelCase to spaces
   n = n.replace(/([a-z0-9])([A-Z])/g, '$1 $2')
   // Collapse whitespace and separators

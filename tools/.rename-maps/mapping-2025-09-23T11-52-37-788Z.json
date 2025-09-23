@@ -1,0 +1,1910 @@
+[
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/1-Bomb Off/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-off/bomb-off-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/2-Bomb On/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/bomb-on/bomb-on-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/1-BOMB/3-Explotion/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb/explotion/explotion-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/10-Big Chain/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/big-chain/big-chain-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/11-Health Bar/Health Bar.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/health-bar/health-bar-health-bar.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/11-Health Bar/Heart.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/health-bar/health-bar-heart.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Barrel.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-barrel.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Blue Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-blue-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Chair.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-chair.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Green Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-green-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Red Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-red-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Skull.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-skull.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Table.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-table.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Windows.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-windows.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/13-Run Particles/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/run-particles/run-particles-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/14-Jump Particles/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/jump-particles/jump-particles-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/15-Fall Particles/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/fall-particles/fall-particles-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/2-Attack/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/attack/attack-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/16-Enemy-Cannon/3-Cannon Ball/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cannon/cannon-ball/cannon-ball-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/17.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-17.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/18.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-18.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/19.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-19.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/20.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-20.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/21.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-21.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/22.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-22.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/1-Closed/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closed/closed-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/2-Opening/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/opening/opening-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/2-Opening/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/opening/opening-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/2-Opening/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/opening/opening-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/2-Opening/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/opening/opening-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/2-Opening/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/opening/opening-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/3-Closing/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closing/closing-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/3-Closing/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closing/closing-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/3-Closing/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closing/closing-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/3-Closing/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closing/closing-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Door/3-Closing/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/door/closing/closing-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/17.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-17.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/18.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-18.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/19.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-19.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/20.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-20.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/21.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-21.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/22.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-22.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/23.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-23.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/24.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-24.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/25.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-25.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/26.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-26.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/27.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-27.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/28.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-28.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/29.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-29.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/30.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-30.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/31.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-31.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/32.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-32.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/33.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-33.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/34.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-34.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/1-Idle/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/idle/idle-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/10-Dead Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-ground/dead-ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/10-Dead Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-ground/dead-ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/10-Dead Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-ground/dead-ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/10-Dead Ground/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-ground/dead-ground-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/2-Run/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/run/run-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/3-Jump Anticipation/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/jump-anticipation/jump-anticipation-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/4-Jump/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/jump/jump-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/4-Jump/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/jump/jump-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/4-Jump/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/jump/jump-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/4-Jump/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/jump/jump-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/5-Fall/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/fall/fall-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/5-Fall/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/fall/fall-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/6-Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/ground/ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/6-Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/ground/ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/6-Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/ground/ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/7-Attack/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/attack/attack-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/8-Hit/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/hit/hit-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/2-Enemy-Bald Pirate/9-Dead Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-bald-pirate/dead-hit/dead-hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/1-Charging Bar/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/charging-bar/charging-bar-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/2-Full (Intermitent)/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/full-(intermitent)/full-(intermitent)-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/2-Full (Intermitent)/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/full-(intermitent)/full-(intermitent)-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/2-Full (Intermitent)/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/full-(intermitent)/full-(intermitent)-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Bomb Bar/3-Closing/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/bomb-bar/closing/closing-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/17.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-17.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/18.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-18.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/19.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-19.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/20.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-20.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/21.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-21.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/22.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-22.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/23.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-23.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/24.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-24.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/25.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-25.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/26.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-26.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/27.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-27.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/28.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-28.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/29.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-29.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/30.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-30.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/31.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-31.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/32.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-32.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/33.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-33.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/34.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-34.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/35.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-35.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/36.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-36.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/1-Idle/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/idle/idle-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/10-Dead Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-hit/dead-hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/11-Dead Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-ground/dead-ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/11-Dead Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-ground/dead-ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/11-Dead Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-ground/dead-ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/11-Dead Ground/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/dead-ground/dead-ground-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/2-Run/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/run/run-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/3-Jump Anticipation/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/jump-anticipation/jump-anticipation-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/4-Jump/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/jump/jump-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/4-Jump/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/jump/jump-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/4-Jump/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/jump/jump-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/4-Jump/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/jump/jump-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/5-Fall/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/fall/fall-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/5-Fall/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/fall/fall-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/6-Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/ground/ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/6-Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/ground/ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/6-Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/ground/ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/7-Attack/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/attack/attack-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/8-Blow the wick/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/blow-the-wick/blow-the-wick-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/3-Enemy-Cucumber/9-Hit/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-cucumber/hit/hit-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/17.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-17.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/18.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-18.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/19.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-19.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/20.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-20.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/21.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-21.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/22.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-22.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/23.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-23.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/24.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-24.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/25.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-25.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/26.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-26.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/27.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-27.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/28.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-28.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/29.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-29.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/30.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-30.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/31.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-31.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/32.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-32.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/33.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-33.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/34.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-34.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/35.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-35.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/36.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-36.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/37.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-37.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/38.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-38.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/1-Idle/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle/idle-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/10-Run (Bomb)/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run-(bomb)/run-(bomb)-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/11-Throw (Bomb)/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/throw-(bomb)/throw-(bomb)-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/12-Hit/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/hit/hit-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/13-Dead Hit/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-hit/dead-hit-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/14-Dead Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-ground/dead-ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/14-Dead Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-ground/dead-ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/14-Dead Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-ground/dead-ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/14-Dead Ground/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/dead-ground/dead-ground-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/2-Run/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/run/run-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/3-Jump Anticipation/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/jump-anticipation/jump-anticipation-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/4-Jump/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/jump/jump-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/4-Jump/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/jump/jump-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/4-Jump/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/jump/jump-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/4-Jump/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/jump/jump-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/5-Fall/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/fall/fall-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/5-Fall/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/fall/fall-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/6-Ground/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/ground/ground-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/6-Ground/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/ground/ground-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/6-Ground/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/ground/ground-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/7-Attack/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/attack/attack-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/8-Pick (Bomb)/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/pick-(bomb)/pick-(bomb)-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Enemy-Big Guy/9-Idle (Bomb)/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/enemy-big-guy/idle-(bomb)/idle-(bomb)-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Interrogation Dialog/1-Opening/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog/opening/opening-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Interrogation Dialog/1-Opening/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog/opening/opening-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Interrogation Dialog/1-Opening/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog/opening/opening-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Interrogation Dialog/1-Opening/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog/opening/opening-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/4-Interrogation Dialog/2-Closing/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/interrogation-dialog/closing/closing-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/5-Exclamation Dialog/1-Opening/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog/opening/opening-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/5-Exclamation Dialog/1-Opening/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog/opening/opening-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/5-Exclamation Dialog/1-Opening/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog/opening/opening-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/5-Exclamation Dialog/1-Opening/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog/opening/opening-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/5-Exclamation Dialog/2-Closing/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/exclamation-dialog/closing/closing-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/6-Candle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle/candle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/7-Candle Light/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle-light/candle-light-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/7-Candle Light/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle-light/candle-light-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/7-Candle Light/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle-light/candle-light-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/7-Candle Light/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle-light/candle-light-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/7-Candle Light/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/candle-light/candle-light-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/8-Window Light/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/window-light/window-light-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/8-Window Light/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/window-light/window-light-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/8-Window Light/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/window-light/window-light-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/8-Window Light/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/window-light/window-light-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/9-Small Chain/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/small-chain/small-chain-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live+1/live+1-01.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live+1/live+1-02.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live+1/live+1-03.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live+1/live+1-04.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-04.png"
+  }
+]

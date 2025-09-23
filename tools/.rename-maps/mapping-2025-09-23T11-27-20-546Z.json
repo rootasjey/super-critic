@@ -1,0 +1,34 @@
+[
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Barrel.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-barrel.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Blue Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-blue-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Chair.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-chair.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Green Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-green-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Red Bottle.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-red-bottle.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Skull.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-skull.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Table.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-table.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/12-Other Objects/Windows.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/other-objects/other-objects-windows.png"
+  }
+]

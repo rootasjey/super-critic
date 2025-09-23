@@ -1,0 +1,106 @@
+[
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/10.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-10.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/11.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-11.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/12.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-12.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/13.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-13.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/14.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-14.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/15.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-15.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/16.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-16.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/17.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-17.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/18.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-18.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/19.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-19.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/20.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-20.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/21.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-21.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/22.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-22.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-04.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/5.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-05.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/6.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-06.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/7.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-07.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/8.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-08.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/1-Idle/9.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/idle/idle-09.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/1.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-01.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/2.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-02.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/3.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-03.png"
+  },
+  {
+    "from": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/17-Heart/2-Live+1/4.png",
+    "to": "/Users/rootasjey/GitHub/super-critic/public/assets/sprites/heart/live-plus-1/live-plus-1-04.png"
+  }
+]
