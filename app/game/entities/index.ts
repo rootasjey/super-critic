@@ -1,0 +1,2 @@
+// Entities module scaffold
+export {}

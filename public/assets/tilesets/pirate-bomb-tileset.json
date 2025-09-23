@@ -1,0 +1,13 @@
+{
+  "columns": 10,
+  "image": "Tile-Sets (64-64).png",
+  "imageheight": 640,
+  "imagewidth": 640,
+  "margin": 0,
+  "name": "pirate-bomb",
+  "spacing": 0,
+  "tilecount": 100,
+  "tileheight": 64,
+  "tilewidth": 64,
+  "version": 1.2
+}

@@ -1,0 +1,22 @@
+{ "columns":6,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"pirate-bomb-tile-set-(64-64)..tsj"
+        }
+    },
+ "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Tile-Sets (64-64).png",
+ "imageheight":320,
+ "imagewidth":384,
+ "margin":0,
+ "name":"pirate-bomb-tile-set-(64-64)",
+ "spacing":0,
+ "tilecount":30,
+ "tiledversion":"1.11.2",
+ "tileheight":64,
+ "tilewidth":64,
+ "type":"tileset",
+ "version":"1.10"
+}

@@ -1,0 +1,66 @@
+{ "columns":0,
+ "grid":
+    {
+     "height":1,
+     "orientation":"orthogonal",
+     "width":1
+    },
+ "margin":0,
+ "name":"bricks",
+ "spacing":0,
+ "tilecount":8,
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tiles":[
+        {
+         "id":0,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/1.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":1,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/2.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":2,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/3.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":3,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/4.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":4,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/5.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":5,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/6.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":6,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/7.png",
+         "imageheight":16,
+         "imagewidth":64
+        }, 
+        {
+         "id":7,
+         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/8.png",
+         "imageheight":16,
+         "imagewidth":64
+        }],
+ "tilewidth":64,
+ "type":"tileset",
+ "version":"1.10"
+}

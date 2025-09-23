@@ -1,18 +1,9 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <h1>Super Critic — Phaser + Nuxt demo</h1>
-
     <div style="display:flex;gap:16px;align-items:flex-start">
-      <div>
-        <button @click="startGame">Start Game</button>
-        <button @click="stopGame">Stop Game</button>
-
-        <div style="margin-top:12px">
-          <strong>Last score:</strong> {{ lastScore }}</div>
-      </div>
       <ClientOnly placeholder="Loading game...">
-        <div class="game-container">
+        <div style="flex:1;display:flex;align-items:flex-start;justify-content:center">
           <Game />
         </div>
       </ClientOnly>
@@ -21,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import "~/styles/main.css"
+import '@una-ui/preset/una.css'
+
 const lastScore = ref<number | null>(null)
 
 const { on, off, emit } = useEventBus()

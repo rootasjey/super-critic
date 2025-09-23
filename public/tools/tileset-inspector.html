@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tileset Inspector</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background: #222; color: #eee; }
+    canvas { border: 1px solid #444; image-rendering: pixelated; }
+    .info { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Tileset Inspector</h2>
+  <p>Shows GIDs for tiles in the tileset. Click a tile to copy its GID.</p>
+  <canvas id="c"></canvas>
+  <div class="info" id="info">Loading...</div>
+  <script>
+    const imgPath = '/assets/tilesets/pirate-bomb/Tile-Sets (64-64).png'
+    const tileW = 64, tileH = 64
+    const firstgid = 1
+
+    const img = new Image()
+    img.src = imgPath
+    img.onload = () => {
+      const cols = Math.floor(img.width / tileW)
+      const rows = Math.floor(img.height / tileH)
+      const c = document.getElementById('c')
+      c.width = img.width
+      c.height = img.height
+      const ctx = c.getContext('2d')
+      ctx.imageSmoothingEnabled = false
+      ctx.drawImage(img, 0, 0)
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)'
+      ctx.fillStyle = 'rgba(0,0,0,0.5)'
+      ctx.font = '14px monospace'
+      for (let r=0;r<rows;r++){
+        for(let col=0;col<cols;col++){
+          const x = col*tileW, y = r*tileH
+          ctx.strokeRect(x, y, tileW, tileH)
+          const localId = r*cols + col
+          const gid = firstgid + localId
+          ctx.fillRect(x, y, 38, 18)
+          ctx.fillStyle = '#fff'
+          ctx.fillText(gid, x+4, y+14)
+          ctx.fillStyle = 'rgba(0,0,0,0.5)'
+        }
+      }
+      document.getElementById('info').textContent = `Tiles: ${cols}x${rows} (columns x rows). Click a tile to copy its GID.`
+
+      c.addEventListener('click', (e) => {
+        const rect = c.getBoundingClientRect()
+        const cx = Math.floor((e.clientX - rect.left) / tileW)
+        const cy = Math.floor((e.clientY - rect.top) / tileH)
+        const gid = firstgid + cy*cols + cx
+        navigator.clipboard && navigator.clipboard.writeText(String(gid))
+        .then(()=> alert('Copied GID '+gid+' to clipboard'))
+        .catch(()=> alert('GID: '+gid))
+      })
+    }
+    img.onerror = () => document.getElementById('info').textContent = 'Failed to load tileset: '+imgPath
+  </script>
+</body>
+</html>
