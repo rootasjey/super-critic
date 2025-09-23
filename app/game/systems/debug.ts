@@ -18,11 +18,47 @@ export function setupPlayerDebug(scene: Phaser.Scene, player: Player): PlayerDeb
   text.setScrollFactor(0)
   text.setDepth(10000)
 
-  const onF2 = () => {
+  const onF3 = () => {
     debugStore.enabled = !debugStore.enabled
     player.debugEnabled = debugStore.enabled && debugStore.playerCollider
     gfx.clear()
     text.setVisible(debugStore.enabled && debugStore.playerCollider)
+  }
+  scene.input.keyboard!.on('keydown-F3', onF3)
+
+  const onF1 = () => {
+    try {
+      const mgr = scene.scene
+      const key = scene.scene?.key
+      if (mgr && typeof mgr.isPaused === 'function' && key) {
+        if (mgr.isPaused(key)) mgr.resume(key)
+        else mgr.pause(key)
+        return
+      }
+      // instance pause/resume
+      if (typeof scene.scene.pause === 'function') {
+        const paused = !!scene.sys?.isPaused
+        if (paused && typeof scene.scene.resume === 'function') scene.scene.resume()
+        else if (typeof scene.scene.pause === 'function') scene.scene.pause()
+        return
+      }
+    } catch {}
+  }
+  scene.input.keyboard!.on('keydown-F1', onF1)
+
+  const onF2 = () => {
+    try {
+      if (typeof scene.scene.restart === 'function') {
+        scene.scene.restart()
+        return
+      }
+      const key = scene.scene?.key
+      const mgr = scene.scene
+      if (mgr && key && typeof mgr.stop === 'function' && typeof mgr.start === 'function') {
+        mgr.stop(key)
+        mgr.start(key)
+      }
+    } catch {}
   }
   scene.input.keyboard!.on('keydown-F2', onF2)
 
@@ -52,6 +88,8 @@ export function setupPlayerDebug(scene: Phaser.Scene, player: Player): PlayerDeb
   text.setVisible(debugStore.enabled && debugStore.playerCollider)
 
   const cleanup = () => {
+  scene.input.keyboard?.off('keydown-F3', onF3)
+    scene.input.keyboard?.off('keydown-F1', onF1)
     scene.input.keyboard?.off('keydown-F2', onF2)
     scene.input.keyboard?.off('keydown', onKey)
     gfx.destroy()

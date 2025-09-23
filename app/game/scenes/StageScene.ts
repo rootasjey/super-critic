@@ -107,6 +107,9 @@ export class StageScene extends Phaser.Scene {
         this.debugEnabled = debugStore.enabled
         this.player.debugEnabled = debugStore.playerCollider && debugStore.enabled
 
+        // Expose this scene to debug tooling so UI controls can act on it
+        try { this.debugStore.phaserScene = this } catch {}
+
         // Ensure debug teardown when scene shuts down or is destroyed
         this.events.once('shutdown', () => { this.teardownDebug(); teardownSceneDefaults(this) })
         this.events.once('destroy', () => { this.teardownDebug(); teardownSceneDefaults(this) })
@@ -159,12 +162,13 @@ export class StageScene extends Phaser.Scene {
     if (this.debugEnabled && this.debugGfx && debugStore.playerCollider) {
       this.debugGfx.clear()
       this.player.drawDebug(this.debugGfx)
-      if (this.debugText) {
+        if (this.debugText) {
         const b = this.player.getBodySrc()
-        this.debugText.setText(`F2: Collider Debug\nwidth:${b.width} height:${b.height}\noffsetX:${b.offsetX} offsetY:${b.offsetY}`)
+        this.debugText.setText(`F3: Collider Debug\nwidth:${b.width} height:${b.height}\noffsetX:${b.offsetX} offsetY:${b.offsetY}`)
       }
     }
     
+
     if (this.platformsDebugGfx) {
       this.platformsDebugGfx.clear()
       if (this.debugEnabled && debugStore.platformsCollider) {
@@ -173,6 +177,18 @@ export class StageScene extends Phaser.Scene {
           if (!b || !b.gameObject) return true
           const body = b as Phaser.Physics.Arcade.StaticBody
           this.platformsDebugGfx.strokeRect(body.x, body.y, body.width, body.height)
+          return true
+        })
+      }
+      // Draw enemies' bodies if enabled
+      if (this.debugEnabled && debugStore.showEnemiesBody && this.enemiesGroup) {
+        this.platformsDebugGfx.lineStyle(1, 0xff00aa, 0.7)
+        this.enemiesGroup.children.iterate((obj: Phaser.GameObjects.GameObject) => {
+          const s = obj as Phaser.Physics.Arcade.Sprite
+          if (s && s.body) {
+            const body = s.body as Phaser.Physics.Arcade.Body
+            this.platformsDebugGfx.strokeRect(body.x, body.y, body.width, body.height)
+          }
           return true
         })
       }
@@ -195,6 +211,7 @@ export class StageScene extends Phaser.Scene {
     } finally {
       this.debugCleanup = undefined
       this.debugEnabled = false
+      try { this.debugStore.phaserScene = null } catch {}
     }
   }
 }

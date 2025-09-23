@@ -56,7 +56,7 @@ function onStart() {
         const w = Math.max(200, Math.floor(container.value.clientWidth || window.innerWidth))
         const h = Math.max(150, Math.floor(container.value.clientHeight || window.innerHeight))
         game.scale.resize(w, h)
-        const scene = game.scene.getScene('StageScene') as any
+        const scene = game.scene.getScenes().find((s: any) => s instanceof StageScene) as any
         if (scene && scene.cameras && scene.map) {
           const map = scene.map
           const cam = scene.cameras.main
@@ -67,6 +67,11 @@ function onStart() {
       }
     }
 
+    // Set StageScene instance on the debug store for debug tools to attach
+    try {
+      const scene = game.scene.getScenes().find((s: any) => s instanceof StageScene) as any
+      if (scene) debugStore.phaserScene = scene
+    } catch {}
     window.addEventListener('resize', resizeHandler)
     resizeHandler()
   }
@@ -76,6 +81,7 @@ function onStop() {
   if (game) {
     game.destroy(true)
     game = null
+    try { debugStore.phaserScene = null } catch {}
   }
 }
 
@@ -92,7 +98,7 @@ onMounted(() => {
 
   // Sync store changes to active scene if present
   watch(() => debugStore.enabled, () => {
-    const scene = game?.scene.getScene('StageScene') as any
+  const scene = game?.scene.getScenes().find((s: any) => s instanceof StageScene) as any
     if (scene) {
       scene.debugEnabled = debugStore.enabled
       scene.player.debugEnabled = debugStore.enabled && debugStore.playerCollider
@@ -102,7 +108,7 @@ onMounted(() => {
     }
   })
   watch(() => debugStore.playerCollider, () => {
-    const scene = game?.scene.getScene('StageScene') as any
+    const scene = game?.scene.getScenes().find((s: any) => s instanceof StageScene) as any
     if (scene && scene.player) {
       scene.player.debugEnabled = debugStore.enabled && debugStore.playerCollider
       if (scene.debugText) scene.debugText.setVisible(debugStore.enabled && debugStore.playerCollider)
@@ -110,7 +116,7 @@ onMounted(() => {
     }
   })
   watch(() => debugStore.platformsCollider, () => {
-    const scene = game?.scene.getScene('StageScene') as any
+    const scene = game?.scene.getScenes().find((s: any) => s instanceof StageScene) as any
     if (scene && scene.platformsDebugGfx) {
       scene.platformsDebugGfx.clear()
     }
