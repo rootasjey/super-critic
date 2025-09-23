@@ -123,7 +123,7 @@ node tools/rename-assets.mjs --revert
 
 ## Notes on Maps & Tilesets
 
-- We currently embed external tilesets at runtime for the `stage-0.json` map. This keeps Tiled exports simple while avoiding additional HTTP requests.
+- We currently embed external tilesets at runtime for the `first-scene.json` map. This keeps Tiled exports simple while avoiding additional HTTP requests.
 - If we prefer a build-time step, we can add a small tool to pre-embed tilesets and emit a `*-embedded.json` for faster loads and simpler scene code.
 
 ## Tech Stack

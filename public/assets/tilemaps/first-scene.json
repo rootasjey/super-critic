@@ -335,22 +335,23 @@
  "tiledversion":"1.11.2",
  "tileheight":64,
  "tilesets":[
-        {
-         "firstgid":1,
-         "source":"pirate-bomb-tile-set-(64-64).json"
-        }, 
-        {
-         "firstgid":31,
-         "source":"bricks.json"
-        }, 
-        {
-         "firstgid":40,
-         "source":"special.json"
-        }, 
-        {
-         "firstgid":41,
-         "source":"characters.json"
-        }],
+       {
+              "firstgid":1,
+              "source":"../tilesets/pirate-bomb.json"
+       }, 
+  {
+    "firstgid":31,
+    "source":"../tilesets/bricks.json"
+  }, 
+  {
+    "firstgid":40,
+    "source":"../tilesets/special.json"
+  }, 
+  {
+    "firstgid":41,
+    "source":"../tilesets/characters.json"
+  }
+],
  "tilewidth":64,
  "type":"map",
  "version":"1.10",

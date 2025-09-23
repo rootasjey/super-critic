@@ -8,16 +8,16 @@ export function embedTilesets(scene: Phaser.Scene, raw: any) {
   const embed = (src: string | undefined) => {
     if (!src) return null
     const name = (src.split('/').pop() || src).toLowerCase()
-    if (name.includes('pirate-bomb-tile-set') || name.includes('pirate-bomb-tileset')) {
+    if (name === 'pirate-bomb.json') {
       const data = scene.cache.json.get('ts_pirate')
       if (data) return data
       return {
         columns: 6,
-        image: '../tilesets/pirate-bomb/Tile-Sets (64-64).png',
+        image: 'pirate-bomb/tile-sets-64x64.png',
         imageheight: 320,
         imagewidth: 384,
         margin: 0,
-        name: 'pirate-bomb-tile-set-(64-64)',
+        name: 'pirate-bomb',
         spacing: 0,
         tilecount: 30,
         tiledversion: '1.11.2',
@@ -44,12 +44,7 @@ export function embedTilesets(scene: Phaser.Scene, raw: any) {
           Object.keys(ts).forEach(k => { if (k !== 'firstgid') delete ts[k] })
           Object.assign(ts, embedded)
           ts.firstgid = firstgid
-          if ((ts.name || '').toLowerCase() !== 'pirate-bomb-tile-set-(64-64)') {
-            const originalSource = String(ts.source || '')
-            if (originalSource.toLowerCase().endsWith('pirate-bomb-tile-set-(64-64).json')) {
-              ts.name = 'pirate-bomb-tile-set-(64-64)'
-            }
-          }
+          if ((ts.name || '').toLowerCase() !== 'pirate-bomb-tileset') ts.name = 'pirate-bomb-tileset'
           delete ts.source
         } else {
           // eslint-disable-next-line no-console

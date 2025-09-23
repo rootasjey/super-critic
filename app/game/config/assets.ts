@@ -25,7 +25,7 @@ export type JsonKey = 'stage0_raw' | 'ts_pirate' | 'ts_bricks' | 'ts_special' | 
 export const ASSETS = {
   images: {
     // tileset
-    'pirate-bomb': '/assets/tilesets/pirate-bomb/Tile-Sets (64-64).png',
+    'pirate-bomb': '/assets/tilesets/pirate-bomb/tile-sets-64x64.png',
 
     // enemies (placeholder static frames for now)
   npc1: '/assets/sprites/enemies/enemy-bald-pirate/idle/idle-01.png',
@@ -49,11 +49,11 @@ export const ASSETS = {
   } as Record<ImageKey, string>,
 
   json: {
-    stage0_raw: '/assets/tilemaps/stage-0.json',
-    ts_pirate: '/assets/tilemaps/pirate-bomb-tileset.json',
-    ts_bricks: '/assets/tilemaps/bricks.json',
-    ts_special: '/assets/tilemaps/special.json',
-    ts_characters: '/assets/tilemaps/characters.json',
+    stage0_raw: '/assets/tilemaps/first-scene.json',
+    ts_pirate: '/assets/tilesets/pirate-bomb.json',
+    ts_bricks: '/assets/tilesets/bricks.json',
+    ts_special: '/assets/tilesets/special.json',
+    ts_characters: '/assets/tilesets/characters.json',
   } as Record<JsonKey, string>,
 }
 

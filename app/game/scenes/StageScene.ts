@@ -74,7 +74,7 @@ export class StageScene extends Phaser.Scene {
     const map = this.make.tilemap({ key: embeddedKey })
     this.map = map
 
-    const tsMain = map.addTilesetImage('pirate-bomb-tile-set-(64-64)', 'pirate-bomb') || map.addTilesetImage('pirate-bomb-tileset', 'pirate-bomb')
+  const tsMain = map.addTilesetImage('pirate-bomb-tileset', 'pirate-bomb')
     const tsBricks = map.addTilesetImage('bricks') || undefined
     const tilesets = [tsMain, tsBricks].filter(Boolean) as Phaser.Tilemaps.Tileset[]
 

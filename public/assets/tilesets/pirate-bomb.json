@@ -1,10 +1,10 @@
 {
   "columns": 6,
-  "image": "../tilesets/pirate-bomb/tile-sets-64x64.png",
+  "image": "pirate-bomb/tile-sets-64x64.png",
   "imageheight": 320,
   "imagewidth": 384,
   "margin": 0,
-  "name": "pirate-bomb-tileset",
+  "name": "pirate-bomb",
   "spacing": 0,
   "tilecount": 30,
   "tiledversion": "1.11.2",
