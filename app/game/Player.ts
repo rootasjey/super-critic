@@ -223,10 +223,31 @@ export class Player {
     const pBody = plat?.body as Phaser.Physics.Arcade.StaticBody
     if (!body || !pBody) return false
     if (obj === this.sprite && this.scene.time.now < this.dropThroughUntil) return false
+    // Only allow collision if:
+    // - player is moving down
+    // - player's previous bottom was above the platform's top (not beside or below)
+    // - player is horizontally overlapping the platform
     if (body.velocity.y >= 0) {
       const playerBottom = body.bottom
+      const playerPrevBottom = body.prev.y + body.height
       const platformTop = pBody.top
-      return playerBottom <= platformTop + 4
+      const playerLeft = body.left
+      const playerRight = body.right
+      const platformLeft = pBody.left
+      const platformRight = pBody.right
+      const horizontallyOverlapping = playerRight > platformLeft && playerLeft < platformRight
+      // Allow collision only if:
+      // - moving down
+      // - horizontally overlapping
+      // - player's bottom is at or just below platform top (with margin)
+      // - player's top is above platform top (with margin)
+      const playerTop = body.top;
+      const margin = 1;
+      return (
+        horizontallyOverlapping &&
+        playerBottom >= platformTop - margin &&
+        playerTop < platformTop + margin
+      );
     }
     return false
   }
