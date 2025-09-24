@@ -50,5 +50,6 @@ export const CaptainClownSwordSkin: PlayerSkin = {
       scene.load.image(`player_hit_${i}`, `${base}/hit-sword/hit-sword-${ii}.png`)
     }
     // Sword-specific extras are available under sword-effects/* and sword/*
+    // Note: Sword effect sprites (sword-effects/attack-1/*) are preloaded and managed by the attack system
   }
 }

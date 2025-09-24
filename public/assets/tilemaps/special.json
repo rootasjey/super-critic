@@ -14,7 +14,7 @@
  "tiles":[
         {
          "id":0,
-         "image":"..\/pink-square.png",
+         "image":"..\/images\/pink-square.png",
          "imageheight":64,
          "imagewidth":64
         }],

@@ -14,28 +14,28 @@
  "tiles":[
         {
          "id":0,
-         "image":"..\/Pirate Bomb\/Sprites\/2-Enemy-Bald Pirate\/1-Idle\/1.png",
+         "image":"..\/sprites\/enemies\/enemy-bald-pirate\/idle\/idle-01.png",
          "imageheight":67,
          "imagewidth":63
         }, 
         {
          "id":34,
-         "image":"..\/Pirate Bomb\/Sprites\/3-Enemy-Cucumber\/1-Idle\/1.png",
+         "image":"..\/sprites\/enemies\/enemy-cucumber\/idle\/idle-01.png",
          "imageheight":68,
          "imagewidth":64
         }, 
         {
          "id":35,
-         "image":"..\/Pirate Bomb\/Sprites\/4-Enemy-Big Guy\/1-Idle\/1.png",
+         "image":"..\/sprites\/enemies\/enemy-big-guy\/idle\/idle-01.png",
          "imageheight":74,
          "imagewidth":77
         }, 
-   {
-    "id":36,
-    "image":"..\/Pirate Bomb\/Sprites\/player\/1-Player-Bomb Guy\/1-Idle\/1.png",
-    "imageheight":58,
-    "imagewidth":58
-   }],
+        {
+         "id":36,
+         "image":"..\/sprites\/player\/player-bomb-guy\/idle\/idle-01.png",
+         "imageheight":58,
+         "imagewidth":58
+        }],
  "tilewidth":77,
  "type":"tileset",
  "version":"1.10"

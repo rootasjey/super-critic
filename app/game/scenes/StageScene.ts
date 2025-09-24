@@ -8,6 +8,7 @@ import { ASSETS } from '~/game/config/assets'
 import { embedTilesets } from '~/game/systems/tileset'
 import { buildCollisionSolids, buildOneWayPlatforms, placeEnemies, placeDecorations, preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFrames, ensureEnemyRunAttackAnims, updateEnemyAI } from '~/game/systems/objects'
 import { spawnPlayerFromLayer } from '~/game/systems/player'
+import { ensureAttackAnimationsForSkin, preloadAttackAssetsForSkin } from '~/game/systems/attack'
 import { fitCameraToMap } from '~/game/systems/camera'
 import { setupPlayerDebug } from '~/game/systems/debug'
 import { onSceneTeardown, teardownSceneDefaults } from '~/game/systems/lifecycle'
@@ -55,6 +56,8 @@ export class StageScene extends Phaser.Scene {
     // Player assets
     const skin = getSelectedSkin()
     Player.preload(this, skin)
+    // Attack assets for selected skin
+    preloadAttackAssetsForSkin(this, skin)
 
     // Enemy frames
     preloadEnemyIdleFrames(this)
@@ -150,6 +153,9 @@ export class StageScene extends Phaser.Scene {
         this.physics.add.collider(enemiesGroup, oneWays, undefined, oneWayProcess, this)
       }
     }
+
+    // Ensure attack animations ready (after animations manager init)
+    ensureAttackAnimationsForSkin(this, getSelectedSkin())
 
     // center and fit camera
     fitCameraToMap(this, map)

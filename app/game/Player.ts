@@ -1,6 +1,8 @@
 import Phaser from 'phaser'
 import type { PlayerSkin } from './skins/PlayerSkin'
 import { CaptainClownSkin } from './skins/CaptainClown'
+import { getAttackStrategyForSkin, isAttackAnimKey } from '~/game/systems/attack'
+import type { AttackStrategy } from '~/game/systems/attack'
 
 export type PlayerOptions = {
   maxSpeed?: number
@@ -24,6 +26,7 @@ export class Player {
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys
   keyA!: Phaser.Input.Keyboard.Key
   keyD!: Phaser.Input.Keyboard.Key
+  keyX!: Phaser.Input.Keyboard.Key
 
   maxSpeed: number
   accel: number
@@ -49,6 +52,11 @@ export class Player {
   private baseH = 0
   private scaleFactor = 1
   private bodySrc = { width: 0, height: 0, offsetX: 0, offsetY: 0 }
+  // attack
+  private attack!: AttackStrategy
+  armed = false
+  armedUntil = 0
+  private attackPressedAt = 0
 
   constructor(scene: Phaser.Scene, opts: PlayerOptions = {}) {
     this.scene = scene
@@ -65,6 +73,8 @@ export class Player {
     this.desiredDisplayHeight = opts.desiredDisplayHeight ?? this.skin.desiredDisplayHeight
     this.origin = opts.origin ?? this.skin.origin
     this.bodyCfg = opts.body ?? this.skin.body
+    // attack strategy depends on skin
+    this.attack = getAttackStrategyForSkin(this.skin)
   }
 
   static preload(scene: Phaser.Scene, skin: PlayerSkin = CaptainClownSkin) {
@@ -141,6 +151,7 @@ export class Player {
     this.cursors = this.scene.input.keyboard!.createCursorKeys()
     this.keyA = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.A)
     this.keyD = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+    this.keyX = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.X)
 
     // jump buffer
     this.scene.input.keyboard!.on('keydown-SPACE', () => {
@@ -201,6 +212,10 @@ export class Player {
     const sy = this.sprite.y
     gfx.lineStyle(1, 0xffcc00, 0.9)
     gfx.strokeRect(sx - 2, sy - 2, 4, 4)
+    // Attack-specific debug (e.g., melee hitbox)
+    if (this.attack && typeof (this.attack as any).debugDraw === 'function') {
+      ;(this.attack as any).debugDraw(this as any, gfx)
+    }
   }
 
   handleOneWayProcess(obj: any, plat: any) {
@@ -220,6 +235,22 @@ export class Player {
     if (!this.sprite || !this.cursors) return
     const body = this.sprite.body as Phaser.Physics.Arcade.Body
     const now = this.scene.time.now
+    // attack input (edge on keydown)
+    if (Phaser.Input.Keyboard.JustDown(this.keyX)) {
+      this.attackPressedAt = now
+      // Only allow attack if not currently playing attack anim or cooldown
+      if (!this.attack.isPlayingAttack(this as any)) {
+        const started = this.attack.tryStart(this as any)
+        if (started) {
+          this.armed = true
+          this.armedUntil = Math.max(this.armedUntil, now + 10000)
+        }
+      }
+    }
+    // armed timeout
+    if (this.armed && now > this.armedUntil && !this.attack.isPlayingAttack(this as any)) {
+      this.armed = false
+    }
 
     if (body.blocked.down) this.lastOnGround = now
 
@@ -255,33 +286,50 @@ export class Player {
     // vertical state animations
     const vy = body.velocity.y
     const onGround = body.blocked.down
+    const playingKey = this.sprite.anims?.currentAnim?.key || ''
+    const attackActive = isAttackAnimKey(playingKey)
     if (!onGround) {
       // console.log(`In air: jump (rising) or fall (falling) (vy: ${vy} • onGround: ${onGround})`)
       // In air: jump (rising) or fall (falling)
-      if (vy < -10 && this.scene.anims.exists('player_jump')) {
-        if (this.sprite.anims.currentAnim?.key !== 'player_jump') this.sprite.play('player_jump')
-      } else if (vy > 10 && this.scene.anims.exists('player_fall')) {
-        if (this.sprite.anims.currentAnim?.key !== 'player_fall') this.sprite.play('player_fall')
+      if (!attackActive) {
+        const jKey = this.animKey('jump')
+        const fKey = this.animKey('fall')
+        if (vy < -10 && this.scene.anims.exists(jKey)) {
+          if (this.sprite.anims.currentAnim?.key !== jKey) this.sprite.play(jKey)
+        } else if (vy > 10 && this.scene.anims.exists(fKey)) {
+          if (this.sprite.anims.currentAnim?.key !== fKey) this.sprite.play(fKey)
+        }
       }
     } else {
       // console.log(`On ground: (vy: ${vy} • onGround: ${onGround})`)
       // On landing, play 'land' only on air->ground transition
-      if (!this.wasOnGround && this.scene.anims.exists('player_land')) {
-        this.sprite.play('player_land')
+      if (!this.wasOnGround) {
+        const lKey = this.animKey('land')
+        if (this.scene.anims.exists(lKey)) this.sprite.play(lKey)
       }
       // If not playing a non-interruptible land, choose walk/idle based on horizontal input
-      const playing = this.sprite.anims?.currentAnim?.key
-      const landActive = (playing === 'player_land') && !!this.sprite.anims?.isPlaying
+      const playing = this.sprite.anims?.currentAnim?.key || ''
+      const landActive = ((playing === 'player_land') || (playing === 'player_sword_land')) && !!this.sprite.anims?.isPlaying
       // console.log(`0. Player (player_land: ${playing} • active: ${landActive} • onGround: ${onGround})`)
-      if (!landActive) {
+      if (!landActive && !attackActive) {
         if (left || right) {
-          if (this.scene.anims.exists('player_walk') && playing !== 'player_walk') this.sprite.play('player_walk')
+          const key = this.animKey('walk')
+          if (this.scene.anims.exists(key) && playing !== key) this.sprite.play(key)
         } else {
-          // console.log(`1. Playing idle animation (playing: ${playing} • onGround: ${onGround} • wasOnGround: ${this.wasOnGround} • animation exists: ${this.scene.anims.exists('player_idle')})`)
-          if (this.scene.anims.exists('player_idle') && playing !== 'player_idle') this.sprite.play('player_idle')
+          const key = this.animKey('idle')
+          if (this.scene.anims.exists(key) && playing !== key) this.sprite.play(key)
         }
       }
     }
     this.wasOnGround = onGround
+
+    // Update attack system (repositions hitboxes, manages effects)
+    this.attack.update(this as any, 0)
+  }
+
+  private animKey(name: 'idle' | 'walk' | 'jump' | 'fall' | 'land') {
+    const useSword = this.armed || isAttackAnimKey(this.sprite.anims?.currentAnim?.key)
+    const prefix = useSword ? 'player_sword_' : 'player_'
+    return `${prefix}${name}`
   }
 }

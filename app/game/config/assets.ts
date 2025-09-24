@@ -3,9 +3,9 @@
 
 export type ImageKey =
   | 'pirate-bomb'
-  | 'npc1'
-  | 'npc2'
-  | 'npc3'
+  | 'enemy1'
+  | 'enemy2'
+  | 'enemy3'
   | 'heart'
   | 'door_closed'
   | 'barrel'
@@ -28,9 +28,9 @@ export const ASSETS = {
     'pirate-bomb': '/assets/tilesets/pirate-bomb/tile-sets-64x64.png',
 
     // enemies (placeholder static frames for now)
-  npc1: '/assets/sprites/enemies/enemy-bald-pirate/idle/idle-01.png',
-  npc2: '/assets/sprites/enemies/enemy-cucumber/idle/idle-01.png',
-  npc3: '/assets/sprites/enemies/enemy-big-guy/idle/idle-01.png',
+  enemy1: '/assets/sprites/enemies/enemy-bald-pirate/idle/idle-01.png',
+  enemy2: '/assets/sprites/enemies/enemy-cucumber/idle/idle-01.png',
+  enemy3: '/assets/sprites/enemies/enemy-big-guy/idle/idle-01.png',
 
     // UI + decorations
   heart: '/assets/sprites/ui/heart/idle/idle-01.png',

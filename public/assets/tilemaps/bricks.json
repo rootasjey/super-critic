@@ -14,49 +14,49 @@
  "tiles":[
         {
          "id":0,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/1.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/1.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":1,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/2.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/2.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":2,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/3.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/3.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":3,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/4.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/4.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":4,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/5.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/5.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":5,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/6.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/6.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":6,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/7.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/7.png",
          "imageheight":16,
          "imagewidth":64
         }, 
         {
          "id":7,
-         "image":"..\/Pirate Bomb\/Sprites\/8-Tile-Sets\/Variations\/8.png",
+         "image":"..\/tilesets\/pirate-bomb\/variations\/8.png",
          "imageheight":16,
          "imagewidth":64
         }],
