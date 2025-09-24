@@ -238,13 +238,11 @@ export class Player {
     // attack input (edge on keydown)
     if (Phaser.Input.Keyboard.JustDown(this.keyX)) {
       this.attackPressedAt = now
-      // Only allow attack if not currently playing attack anim or cooldown
-      if (!this.attack.isPlayingAttack(this as any)) {
-        const started = this.attack.tryStart(this as any)
-        if (started) {
-          this.armed = true
-          this.armedUntil = Math.max(this.armedUntil, now + 10000)
-        }
+      // Always try to start attack - let the attack system handle combo logic
+      const started = this.attack.tryStart(this as any)
+      if (started) {
+        this.armed = true
+        this.armedUntil = Math.max(this.armedUntil, now + 10000)
       }
     }
     // armed timeout

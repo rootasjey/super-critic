@@ -58,8 +58,10 @@ class CaptainMeleeAttack implements AttackStrategy {
     collider?: Phaser.Physics.Arcade.Collider
     lastAttackAt: number
     swordEffect?: Phaser.GameObjects.Sprite
-    comboStep: number // 1, 2, or 3
-    comboWindowUntil: number // Time window to continue combo
+    comboStep: number // 1, 2, or 3 for ground attacks
+    comboWindowUntil: number // Time window to continue ground combo
+    airComboStep: number // 1 or 2 for air attacks
+    airComboWindowUntil: number // Time window to continue air combo
   }>()
 
   private getState(p: PlayerLike) {
@@ -69,7 +71,9 @@ class CaptainMeleeAttack implements AttackStrategy {
         cooldownUntil: 0, 
         lastAttackAt: 0, 
         comboStep: 1, 
-        comboWindowUntil: 0 
+        comboWindowUntil: 0,
+        airComboStep: 1,
+        airComboWindowUntil: 0
       } 
       this.state.set(p, s) 
     }
@@ -91,16 +95,26 @@ class CaptainMeleeAttack implements AttackStrategy {
     loadSeries('jump', 'jump-sword', 3)
     loadSeries('fall', 'fall-sword', 1)
     loadSeries('land', 'ground-sword', 2)
-    // Attack 1, 2, 3
+    // Ground attacks 1, 2, 3
     loadSeries('attack1', 'attack-1', 3)
     loadSeries('attack2', 'attack-2', 3)
     loadSeries('attack3', 'attack-3', 3)
-    // Sword effects for all attacks
+    // Air attacks 1, 2
+    loadSeries('air_attack1', 'air-attack-1', 3)
+    loadSeries('air_attack2', 'air-attack-2', 3)
+    // Sword effects for ground attacks
     const effectsBase = '/assets/sprites/player/captain-clown-nose/sword-effects'
     for (let attack = 1; attack <= 3; attack++) {
       for (let i = 1; i <= 3; i++) {
         const ii = String(i).padStart(2, '0')
         ensure(`sword_effect_attack${attack}_${i}`, `${effectsBase}/attack-${attack}/attack-${attack}-${ii}.png`)
+      }
+    }
+    // Sword effects for air attacks (only 2 frames each)
+    for (let attack = 1; attack <= 2; attack++) {
+      for (let i = 1; i <= 2; i++) {
+        const ii = String(i).padStart(2, '0')
+        ensure(`sword_effect_air_attack${attack}_${i}`, `${effectsBase}/air-attack-${attack}/air-attack-${attack}-${ii}.png`)
       }
     }
   }
@@ -117,25 +131,39 @@ class CaptainMeleeAttack implements AttackStrategy {
     add('jump', 'jump', 3, 10, 0)
     add('fall', 'fall', 1, 8, -1)
     add('land', 'land', 2, 10, 0)
-    // Attack animations (1, 2, 3)
+    // Ground attack animations (1, 2, 3)
     for (let attackNum = 1; attackNum <= 3; attackNum++) {
       const atkKey = `player_sword_attack${attackNum}`
       if (!scene.anims.exists(atkKey)) {
         const frames = Array.from({ length: 3 }, (_, i) => ({ key: `player_sword_attack${attackNum}_${i + 1}` }))
         scene.anims.create({ key: atkKey, frames, frameRate: 14, repeat: 0 })
       }
-      // Sword effect animations
+      // Ground sword effect animations
       const effectKey = `sword_effect_attack${attackNum}_anim`
       if (!scene.anims.exists(effectKey)) {
         const frames = Array.from({ length: 3 }, (_, i) => ({ key: `sword_effect_attack${attackNum}_${i + 1}` }))
         scene.anims.create({ key: effectKey, frames, frameRate: 20, repeat: 0 })
       }
     }
+    // Air attack animations (1, 2)
+    for (let attackNum = 1; attackNum <= 2; attackNum++) {
+      const atkKey = `player_sword_air_attack${attackNum}`
+      if (!scene.anims.exists(atkKey)) {
+        const frames = Array.from({ length: 3 }, (_, i) => ({ key: `player_sword_air_attack${attackNum}_${i + 1}` }))
+        scene.anims.create({ key: atkKey, frames, frameRate: 16, repeat: 0 })
+      }
+      // Air sword effect animations (2 frames each)
+      const effectKey = `sword_effect_air_attack${attackNum}_anim`
+      if (!scene.anims.exists(effectKey)) {
+        const frames = Array.from({ length: 2 }, (_, i) => ({ key: `sword_effect_air_attack${attackNum}_${i + 1}` }))
+        scene.anims.create({ key: effectKey, frames, frameRate: 24, repeat: 0 })
+      }
+    }
   }
 
   isPlayingAttack(player: PlayerLike): boolean {
     const key = player.sprite.anims?.currentAnim?.key || ''
-    return key.startsWith('player_sword_attack')
+    return key.startsWith('player_sword_attack') || key.startsWith('player_sword_air_attack')
   }
 
   tryStart(player: PlayerLike): boolean {
@@ -143,29 +171,69 @@ class CaptainMeleeAttack implements AttackStrategy {
     const now = scene.time.now
     const st = this.getState(player)
     
-    // Check for combo continuation or new attack
-    let currentComboStep = 1
-    if (now < st.comboWindowUntil && !this.isPlayingAttack(player)) {
-      // Continue combo to next step
-      currentComboStep = st.comboStep + 1
-      if (currentComboStep > 3) currentComboStep = 1 // Loop back to attack 1
-    } else if (this.isPlayingAttack(player)) {
-      // Don't interrupt current attack
+    if (now < st.cooldownUntil) {
       return false
-    } else {
-      // Start fresh combo
-      currentComboStep = 1
     }
     
-    if (now < st.cooldownUntil) return false
+    // Check if player is in air first
+    const bodyCheck = player.sprite.body as Phaser.Physics.Arcade.Body
+    const airCheck = !bodyCheck.blocked.down
+    
+    // Allow combo continuation if within combo window, even if currently playing attack
+    const canContinueCombo = airCheck 
+      ? (now < st.airComboWindowUntil)
+      : (now < st.comboWindowUntil)
+    
+    if (this.isPlayingAttack(player) && !canContinueCombo) {
+      return false
+    }
 
     this.ensureAnims(scene)
     ;(player as any).armed = true
     ;(player as any).armedUntil = now + 10000
     
+    // Check if player is in air
+    const playerBody = player.sprite.body as Phaser.Physics.Arcade.Body
+    const isInAir = !playerBody.blocked.down
+    
+    let attackType: 'ground' | 'air'
+    let currentComboStep: number
+    let animationKey: string
+    let effectKey: string
+    
+    if (isInAir) {
+      // Air attack logic
+      attackType = 'air'
+      const withinWindow = now < st.airComboWindowUntil
+      if (withinWindow) {
+        // Continue air combo
+        currentComboStep = st.airComboStep + 1
+        if (currentComboStep > 2) currentComboStep = 1 // Loop back to air attack 1
+      } else {
+        // Start fresh air combo
+        currentComboStep = 1
+      }
+      st.airComboStep = currentComboStep
+      animationKey = `player_sword_air_attack${currentComboStep}`
+      effectKey = `sword_effect_air_attack${currentComboStep}_anim`
+    } else {
+      // Ground attack logic
+      attackType = 'ground'
+      if (now < st.comboWindowUntil) {
+        // Continue ground combo
+        currentComboStep = st.comboStep + 1
+        if (currentComboStep > 3) currentComboStep = 1 // Loop back to attack 1
+      } else {
+        // Start fresh ground combo
+        currentComboStep = 1
+      }
+      st.comboStep = currentComboStep
+      animationKey = `player_sword_attack${currentComboStep}`
+      effectKey = `sword_effect_attack${currentComboStep}_anim`
+    }
+    
     // Play the appropriate attack animation
-    st.comboStep = currentComboStep
-    player.sprite.anims.play(`player_sword_attack${currentComboStep}`, true)
+    player.sprite.anims.play(animationKey, true)
 
     ensureTinyWhiteTexture(scene)
     const playerSprite = player.sprite
@@ -225,10 +293,10 @@ class CaptainMeleeAttack implements AttackStrategy {
     scene.time.delayedCall(80, () => { 
       const b = hitbox!.body as Phaser.Physics.Arcade.Body | null
       if (b) b.enable = true
-      // Show and play sword effect animation using current combo step
+      // Show and play sword effect animation using the determined effect key
       if (swordEffect) {
         swordEffect.setVisible(true)
-        swordEffect.play(`sword_effect_attack${st.comboStep}_anim`)
+        swordEffect.play(effectKey)
       }
     })
     scene.time.delayedCall(170, () => { 
@@ -243,8 +311,12 @@ class CaptainMeleeAttack implements AttackStrategy {
     // Cooldown and completion
     st.cooldownUntil = now + 200 // Shorter cooldown for combo fluidity
     st.lastAttackAt = now
-    // Set combo window for potential next attack
-    st.comboWindowUntil = now + 800 // 800ms window to continue combo
+    // Set combo window based on attack type
+    if (attackType === 'air') {
+      st.airComboWindowUntil = now + 1000 // 1000ms window for air combo (more time needed due to air movement)
+    } else {
+      st.comboWindowUntil = now + 800 // 800ms window to continue ground combo
+    }
     
     // Revert to idle after the attack completes if standing still
     playerSprite.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
@@ -316,5 +388,5 @@ export function ensureAttackAnimationsForSkin(scene: Phaser.Scene, skin: PlayerS
 
 export function isAttackAnimKey(key: string | undefined | null): boolean {
   const k = key || ''
-  return k.startsWith('player_sword_attack') || k === 'player_attack'
+  return k.startsWith('player_sword_attack') || k.startsWith('player_sword_air_attack') || k === 'player_attack'
 }
