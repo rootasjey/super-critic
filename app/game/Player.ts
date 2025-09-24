@@ -306,9 +306,15 @@ export class Player {
     const vy = body.velocity.y
     const onGround = body.blocked.down
     const playingKey = this.sprite.anims?.currentAnim?.key || ''
-    const attackActive = isAttackAnimKey(playingKey)
+    // Check if attack animation is actually playing (not just the key, but the animation progress)
+    let attackActive = isAttackAnimKey(playingKey) && this.sprite.anims.isPlaying
+
+    // If the animation key is an attack but the animation is NOT playing, treat as not active
+    if (isAttackAnimKey(playingKey) && !this.sprite.anims.isPlaying) {
+      attackActive = false;
+    }
+
     if (!onGround) {
-      // console.log(`In air: jump (rising) or fall (falling) (vy: ${vy} • onGround: ${onGround})`)
       // In air: jump (rising) or fall (falling)
       if (!attackActive) {
         const jKey = this.animKey('jump')
@@ -320,7 +326,6 @@ export class Player {
         }
       }
     } else {
-      // console.log(`On ground: (vy: ${vy} • onGround: ${onGround})`)
       // On landing, play 'land' only on air->ground transition
       if (!this.wasOnGround) {
         const lKey = this.animKey('land')
@@ -329,12 +334,12 @@ export class Player {
       // If not playing a non-interruptible land, choose walk/idle based on horizontal input
       const playing = this.sprite.anims?.currentAnim?.key || ''
       const landActive = ((playing === 'player_land') || (playing === 'player_sword_land')) && !!this.sprite.anims?.isPlaying
-      // console.log(`0. Player (player_land: ${playing} • active: ${landActive} • onGround: ${onGround})`)
-      if (!landActive && !attackActive) {
-        if (left || right) {
+      // If attack animation is no longer active but we're still on an attack frame, force correct anim
+      if (!landActive) {
+        if (!attackActive && (left || right)) {
           const key = this.animKey('walk')
           if (this.scene.anims.exists(key) && playing !== key) this.sprite.play(key)
-        } else {
+        } else if (!attackActive && !left && !right) {
           const key = this.animKey('idle')
           if (this.scene.anims.exists(key) && playing !== key) this.sprite.play(key)
         }
