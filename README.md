@@ -131,16 +131,15 @@ node tools/rename-assets.mjs --revert
 Implemented basic health component + HUD (September 2025):
 
 - Files: `app/game/systems/health.ts` (component + `HealthBarHUD`).
-- Assets: `public/assets/sprites/ui/health-bar/*` registered in `assets.ts` (`health_bar_start|middle|end|fill_red`).
+- Assets: `public/assets/sprites/ui/heart/idle/idle-01.png` registered in `assets.ts` as `heart`.
 - Attach: during player spawn (`StageScene.create`) via `attachHealthToPlayer(player, { max: 6 })`.
 - API: `player.damage(amount)`, `player.heal(amount)` convenience wrappers (no-op if health missing).
 - Events: `health-changed` (current, max), `player-died` emitted from component emitter.
-- HUD: Rebuilds automatically if max health changes; fixed to camera (scroll factor 0).
-
+- HUD: Heart icon + `current/max` text (Jersey 20 via `font-ui`), with heal/damage flash scaling; rebuilds automatically if max health changes; fixed to camera (scroll factor 0).
+-
 Extending:
 - To add invulnerability frames, wrap `damage()` with a timestamp guard and emit an `invulnerable-start` event.
-- To change bar position or styling, modify `HealthBarHUD.config` or replace per-segment images.
-- For hearts instead of bar segments, reuse existing `heart` image and set one fill per HP.
+- To adjust HUD layout, tweak `HealthBarHUD.config` (scale, padding, offsets) or swap the leading sprite.
 
 
 ## Tech Stack

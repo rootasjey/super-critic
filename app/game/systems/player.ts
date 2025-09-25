@@ -19,5 +19,6 @@ export function spawnPlayerFromLayer(
   const player = new Player(scene as any, { skin })
   const sprite = player.spawn(ox, oy)
   scene.physics.add.collider(sprite, solids)
+  ;(sprite as any).__controller = player
   return { player, sprite }
 }

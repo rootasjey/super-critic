@@ -69,29 +69,37 @@ export class HealthComponent {
 // HUD ----------------------------------------------------------------------
 
 export class HealthBarHUD {
-  private container!: Phaser.GameObjects.Container
-  private fillImage?: Phaser.GameObjects.Image
-  private midBar?: Phaser.GameObjects.Image
-  private startCap?: Phaser.GameObjects.Image
-  private endCap?: Phaser.GameObjects.Image
-  private fillMaskWidth = 0
-  // Refined proportions for better fit aiming at reference.png style
+  private container?: Phaser.GameObjects.Container
+  private heartImage?: Phaser.GameObjects.Image
+  private healthText?: Phaser.GameObjects.Text
+  private current = 0
+  private max = 0
+  private heartBaseScale = 1
+  private textBaseScale = 1
+  private resetTimer?: Phaser.Time.TimerEvent
+
   private config = {
     x: 56,
     y: 32,
-    barHeight: 42,      // base pixel bar height before global scale (larger)
-    fillInsetY: 18,     // vertical padding inside bar
-    fillInsetX: 12,     // horizontal padding from start cap center to fill start
-    midBaseWidth: 100,  // wider mid section
-    scale: 2.2,         // overall scale applied to whole HUD container (bigger on screen)
-    fillBorderPad: 1.5, // extra shrink so red fill never touches border lines
-    // Optional overrides for inner fill geometry (container-space coordinates)
-    fillPosX: 22,
-    fillPosY: 18.7,
-    fillHeight: 0,
+    scale: 2.2,
+    heartHeight: 18,
+    textPadding: 12,
+    fontSize: 18,
+    textColor: '#ffe3d9',
+    strokeColor: '#2a1212',
+    strokeThickness: 4,
+    shadowColor: 'rgba(0, 0, 0, 0.45)',
+    shadowOffsetX: 0,
+    shadowOffsetY: 3,
+    tweenDuration: 200,
+    resetDelay: 220,
+    textTweenScale: 1.12,
+    heartTweenScale: 1.1,
+    damageColor: '#ff7575',
+    healColor: '#8bffba',
   }
-  private current = 0
-  private max = 0
+
+  private static cachedFontFamily?: string
 
   constructor(private scene: Phaser.Scene) {}
 
@@ -100,76 +108,79 @@ export class HealthBarHUD {
   }
 
   create(max: number, current: number) {
-    this.max = max
-    this.current = current
-    if (this.container) this.container.destroy()
-    const healthContainer = this.scene.add.container(this.config.x, this.config.y)
-    this.container = healthContainer
-    healthContainer.setScrollFactor(0) // fixed to camera
+    this.max = Math.max(1, max)
+    this.current = Phaser.Math.Clamp(current, 0, this.max)
 
-    // Start cap (keep original pixel size; barHeight used to compute scaleY if asset height differs)
-    const startCap = this.scene.add.image(0, 0, 'health_bar_start').setOrigin(0, 0)
-    const scaleY = this.config.barHeight / startCap.height
-    startCap.setScale(scaleY) // uniform to preserve aspect
-    healthContainer.add(startCap)
-    this.startCap = startCap
+    if (this.container) {
+      this.killActiveEffects()
+      this.container.destroy()
+      this.container = undefined
+      this.heartImage = undefined
+      this.healthText = undefined
+    }
 
-    // Middle bar: tile the middle by scaling X only (keep pixel ratio)
-    const mid = this.scene.add.image(startCap.displayWidth, 0, 'health_bar_middle').setOrigin(0, 0)
-    mid.setScale((this.config.midBaseWidth / mid.width), scaleY)
-    healthContainer.add(mid)
-    this.midBar = mid
+    const container = this.scene.add.container(this.config.x, this.config.y)
+    container.setScrollFactor(0)
+    container.setDepth(1000)
+    this.container = container
 
-    // End cap
-    const end = this.scene.add.image(startCap.displayWidth + mid.displayWidth, 0, 'health_bar_end').setOrigin(0, 0)
-    end.setScale(scaleY)
-    healthContainer.add(end)
-    this.endCap = end
+    const heart = this.scene.add.image(0, 0, 'heart').setOrigin(0, 0)
+    const heartScale = this.config.heartHeight / heart.height
+    heart.setScale(heartScale)
+    this.heartBaseScale = heartScale
+    container.add(heart)
+    this.heartImage = heart
 
-  // Fill (continuous) inside middle bar
-  const barPixelWidth = mid.displayWidth
-  const defaultLeft = startCap.displayWidth + this.config.fillInsetX
-  const defaultRight = startCap.displayWidth + barPixelWidth - this.config.fillInsetX
-  const fillX = (this.config.fillPosX ?? defaultLeft)
-  // ensure width computed to the right inner edge for perfect alignment
-  const innerWidth = Math.max(2, Math.round(defaultRight - fillX))
-  // default height derived from bar with padding unless overridden
-  const defaultHeight = Math.max(2, Math.round((startCap.height * scaleY) - (this.config.fillInsetY * 2) - (this.config.fillBorderPad * 2)))
-  const targetHeight = Math.max(2, this.config.fillHeight ?? defaultHeight)
-  this.fillMaskWidth = innerWidth
-  const fillY = (this.config.fillPosY ?? (this.config.fillInsetY + this.config.fillBorderPad))
-  const fill = this.scene.add.image(fillX, fillY, 'health_bar_fill_red').setOrigin(0, 0)
-  // Scale fill proportionally instead of stretching separately: use scale to reach targetHeight
-  const fillScaleY = targetHeight / fill.height
-  fill.setScale( (innerWidth / fill.width), fillScaleY )
-    // Add fill below mid/end caps so borders render on top
-    healthContainer.addAt(fill, 2) // index 0=startCap, 1=mid, 2=fill, rest will shift
-    this.fillImage = fill
-    this.updateFillCrop()
+    const fontFamily = this.resolveUIFont()
+    const textY = heart.displayHeight / 2
+    const label = this.scene.add.text(
+      heart.displayWidth + this.config.textPadding,
+      textY,
+      this.formatLabel(),
+      {
+        fontFamily,
+        fontSize: `${this.config.fontSize}px`,
+        color: this.config.textColor,
+      },
+    )
+    label.setOrigin(0, 0.5)
+    label.setStroke(this.config.strokeColor, this.config.strokeThickness)
+    label.setShadow(
+      this.config.shadowOffsetX,
+      this.config.shadowOffsetY,
+      this.config.shadowColor,
+      0,
+      true,
+      true,
+    )
+    container.add(label)
+    this.healthText = label
+    this.textBaseScale = 1
 
-    // Apply overall HUD scale after layout so pixel math above uses base sizes
-    healthContainer.setScale(this.config.scale)
-  }
-
-  private updateFillCrop() {
-    if (!this.fillImage) return
-    const pct = this.max > 0 ? (this.current / this.max) : 0
-    const w = Math.max(0, Math.round(this.fillMaskWidth * pct))
-    const texW = this.fillImage.texture.getSourceImage().width
-    const texH = this.fillImage.texture.getSourceImage().height
-    const cropW = (w / this.fillMaskWidth) * texW
-    this.fillImage.setCrop(0, 0, cropW, texH)
+    container.setScale(this.config.scale)
+    this.resetVisualState()
   }
 
   updateValues(current: number, max: number) {
     let rebuild = false
-    if (max !== this.max) { this.max = max; rebuild = true }
+    const previous = this.current
+    if (max !== this.max) {
+      this.max = Math.max(1, max)
+      rebuild = true
+    }
     this.current = Phaser.Math.Clamp(current, 0, this.max)
-    if (rebuild) this.create(this.max, this.current)
-    else this.updateFillCrop()
+
+    if (rebuild) {
+      this.create(this.max, this.current)
+    } else if (this.healthText) {
+      this.healthText.setText(this.formatLabel())
+      const delta = this.current - previous
+      if (delta !== 0) {
+        this.triggerChangeEffect(delta < 0 ? 'damage' : 'heal')
+      }
+    }
   }
 
-  // Runtime adjustments --------------------------------------------------
   setHudScale(scale: number) {
     if (!this.container) return
     this.config.scale = scale
@@ -183,39 +194,89 @@ export class HealthBarHUD {
     this.container.setPosition(x, y)
   }
 
-  // Exposed controls for fill geometry (container-space)
-  setFillPosition(x: number, y: number) {
-    this.config.fillPosX = x
-    this.config.fillPosY = y
-    this.relayoutFillFromConfig()
+  private formatLabel() {
+    return `${Math.round(this.current)}/${Math.round(this.max)}`
   }
 
-  setFillHeight(height: number) {
-    this.config.fillHeight = Math.max(2, height)
-    this.relayoutFillFromConfig()
+  private resolveUIFont() {
+    if (HealthBarHUD.cachedFontFamily) return HealthBarHUD.cachedFontFamily
+
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      HealthBarHUD.cachedFontFamily = '"Jersey 20", sans-serif'
+      return HealthBarHUD.cachedFontFamily
+    }
+
+    const probe = document.createElement('span')
+    probe.className = 'font-ui'
+    probe.textContent = '0/0'
+    probe.style.position = 'fixed'
+    probe.style.left = '-9999px'
+    probe.style.top = '-9999px'
+    probe.style.pointerEvents = 'none'
+    document.body.appendChild(probe)
+
+    const fontFamily = getComputedStyle(probe).fontFamily || '"Jersey 20", sans-serif'
+    document.body.removeChild(probe)
+
+    HealthBarHUD.cachedFontFamily = fontFamily
+    return fontFamily
   }
 
-  private relayoutFillFromConfig() {
-    if (!this.container || !this.fillImage || !this.startCap || !this.midBar) return
-    const startCap = this.startCap
-    const mid = this.midBar
-    // current scaleY used to size outlines
-    const scaleY = startCap.scaleY || 1
-    const barPixelWidth = mid.displayWidth
-    const defaultLeft = startCap.displayWidth + this.config.fillInsetX
-    const defaultRight = startCap.displayWidth + barPixelWidth - this.config.fillInsetX
-    const fillX = (this.config.fillPosX ?? defaultLeft)
-    const innerWidth = Math.max(2, Math.round(defaultRight - fillX))
-    const defaultHeight = Math.max(2, Math.round((startCap.height * scaleY) - (this.config.fillInsetY * 2) - (this.config.fillBorderPad * 2)))
-    const targetHeight = Math.max(2, this.config.fillHeight ?? defaultHeight)
-    const fillY = (this.config.fillPosY ?? (this.config.fillInsetY + this.config.fillBorderPad))
-    this.fillMaskWidth = innerWidth
-    this.fillImage.setPosition(fillX, fillY)
-    // update scales to match new geometry
-    const sx = innerWidth / this.fillImage.width
-    const sy = targetHeight / this.fillImage.height
-    this.fillImage.setScale(sx, sy)
-    this.updateFillCrop()
+  private triggerChangeEffect(kind: 'damage' | 'heal') {
+    if (!this.healthText) return
+
+    this.scene.tweens.killTweensOf(this.healthText)
+    if (this.heartImage) this.scene.tweens.killTweensOf(this.heartImage)
+    this.resetTimer?.remove(false)
+    this.resetTimer = undefined
+
+    const targetColor = kind === 'damage' ? this.config.damageColor : this.config.healColor
+    this.healthText.setColor(targetColor)
+    this.healthText.setScale(this.textBaseScale)
+
+    const textTween = this.scene.tweens.add({
+      targets: this.healthText,
+      scaleX: { from: this.textBaseScale * this.config.textTweenScale, to: this.textBaseScale },
+      scaleY: { from: this.textBaseScale * this.config.textTweenScale, to: this.textBaseScale },
+      duration: this.config.tweenDuration,
+      ease: 'Quad.easeOut',
+    })
+
+    if (this.heartImage) {
+      this.heartImage.setScale(this.heartBaseScale)
+      this.scene.tweens.add({
+        targets: this.heartImage,
+        scaleX: { from: this.heartBaseScale * this.config.heartTweenScale, to: this.heartBaseScale },
+        scaleY: { from: this.heartBaseScale * this.config.heartTweenScale, to: this.heartBaseScale },
+        duration: this.config.tweenDuration,
+        ease: 'Quad.easeOut',
+      })
+    }
+
+    this.resetTimer = this.scene.time.delayedCall(this.config.resetDelay + (textTween?.duration ?? 0), () => {
+      this.resetVisualState()
+    })
+  }
+
+  private resetVisualState() {
+    this.resetTimer?.remove(false)
+    this.resetTimer = undefined
+    if (this.healthText) {
+      this.scene.tweens.killTweensOf(this.healthText)
+      this.healthText.setScale(this.textBaseScale)
+      this.healthText.setColor(this.config.textColor)
+    }
+    if (this.heartImage) {
+      this.scene.tweens.killTweensOf(this.heartImage)
+      this.heartImage.setScale(this.heartBaseScale)
+    }
+  }
+
+  private killActiveEffects() {
+    this.resetTimer?.remove(false)
+    this.resetTimer = undefined
+    if (this.healthText) this.scene.tweens.killTweensOf(this.healthText)
+    if (this.heartImage) this.scene.tweens.killTweensOf(this.heartImage)
   }
 }
 

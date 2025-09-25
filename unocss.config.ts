@@ -28,6 +28,7 @@ export default {
       provider: 'coollabs',
       fonts: {
         body: 'Workbench',
+        ui: 'Jersey 20',
       },
       processors: [
         createLocalFontProcessor({
@@ -43,6 +44,7 @@ export default {
   safelist: [
     // Ensure these rules are always generated
     // because they are generated dynamically in some cases
+    'font-ui',
   ],
   shortcuts: [
     {},

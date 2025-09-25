@@ -6,7 +6,7 @@ import { CaptainClownSkin } from '~/game/skins/CaptainClown'
 import { CaptainClownSwordSkin } from '~/game/skins/CaptainClownSword'
 import { ASSETS } from '~/game/config/assets'
 import { embedTilesets } from '~/game/systems/tileset'
-import { buildCollisionSolids, buildOneWayPlatforms, placeEnemies, placeDecorations, preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFrames, ensureEnemyRunAttackAnims, updateEnemyAI } from '~/game/systems/objects'
+import { buildCollisionSolids, buildOneWayPlatforms, placeEnemies, placeDecorations, preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFrames, ensureEnemyRunAttackAnims, updateEnemyAI, getEnemyData } from '~/game/systems/objects'
 import { spawnPlayerFromLayer } from '~/game/systems/player'
 import { ensureAttackAnimationsForSkin, preloadAttackAssetsForSkin } from '~/game/systems/attack'
 import { fitCameraToMap } from '~/game/systems/camera'
@@ -212,6 +212,13 @@ export class StageScene extends Phaser.Scene {
           if (s && s.body) {
             const body = s.body as Phaser.Physics.Arcade.Body
             this.platformsDebugGfx.strokeRect(body.x, body.y, body.width, body.height)
+            const data = getEnemyData(s)
+            const debugHit = data?.debugHitbox
+            if (debugHit && this.time.now <= debugHit.expires) {
+              this.platformsDebugGfx.lineStyle(1, debugHit.color ?? 0xffaa33, 0.9)
+              this.platformsDebugGfx.strokeRect(debugHit.rect.x, debugHit.rect.y, debugHit.rect.width, debugHit.rect.height)
+              this.platformsDebugGfx.lineStyle(1, 0xff00aa, 0.7)
+            }
           }
           return true
         })
@@ -223,7 +230,7 @@ export class StageScene extends Phaser.Scene {
       const playerSprite = this.player?.sprite
       this.enemiesGroup.children.iterate((obj: Phaser.GameObjects.GameObject) => {
         const s = obj as Phaser.Physics.Arcade.Sprite
-        if (s && s.body) updateEnemyAI(this, s, playerSprite)
+  if (s && s.body) updateEnemyAI(this, s, this.player)
         return true
       })
     }
