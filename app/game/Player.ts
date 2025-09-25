@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import type { PlayerSkin } from './skins/PlayerSkin'
 import { CaptainClownSkin } from './skins/CaptainClown'
 import { getAttackStrategyForSkin, isAttackAnimKey } from '~/game/systems/attack'
+import { showDamageNumber } from '~/game/systems/damageNumbers'
 import type { AttackStrategy } from '~/game/systems/attack'
 
 export type PlayerOptions = {
@@ -385,7 +386,21 @@ export class Player {
     const now = this.scene.time.now
     if (h && typeof h.damage === 'function') {
       if (now < this.invulnUntil) return // ignore if invulnerable
-      h.damage(amount)
+      const inflicted = Math.max(0, amount)
+      if (inflicted <= 0) return
+      h.damage(inflicted)
+      const sprite = this.sprite
+      if (sprite && sprite.active) {
+        const offsetY = -((sprite.displayHeight || 32) * 0.65)
+        showDamageNumber(this.scene, inflicted, {
+          sprite,
+          offsetY,
+          color: '#ff5f5f',
+          strokeColor: '#2a1212',
+          floatDistance: 32,
+          fontSize: 20,
+        })
+      }
       this.invulnUntil = now + this.INVULN_DURATION
       this.invulnFlashTimer = now
       this.invulnFlashOn = false

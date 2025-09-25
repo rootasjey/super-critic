@@ -8,6 +8,7 @@ import type {
 	EnemyKnockback,
 } from './config'
 import { BASE_DEFAULTS, ENEMY_DEFS } from './config'
+import { showDamageNumber } from '~/game/systems/damageNumbers'
 import { animKey } from './animations'
 
 export type EnemyState = 'idle' | 'run' | 'attack'
@@ -325,6 +326,7 @@ export function applyEnemyHit(
 	knock: Knockback,
 	dir: 1 | -1,
 	stagger = 0.3,
+	damage = 1,
 ) {
 	const data = getEnemyData(enemy)
 	const body = enemy.body as Phaser.Physics.Arcade.Body | null
@@ -350,5 +352,17 @@ export function applyEnemyHit(
 	if (data) {
 		data.hurtTimer = Math.max(stagger, 0)
 		data.cooldown = Math.max(data.cooldown, 0.5)
+	}
+
+	if (damage > 0) {
+		const offsetY = -((enemy.displayHeight || 32) * 0.6)
+		showDamageNumber(scene, damage, {
+			sprite: enemy,
+			offsetY,
+			color: '#ffe066',
+			strokeColor: '#2a1212',
+			floatDistance: 30,
+			fontSize: 18,
+		})
 	}
 }

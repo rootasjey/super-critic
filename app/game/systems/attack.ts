@@ -63,6 +63,7 @@ class CaptainMeleeAttack implements AttackStrategy {
     comboWindowUntil: number // Time window to continue ground combo
     airComboStep: number // 1 or 2 for air attacks
     airComboWindowUntil: number // Time window to continue air combo
+    pendingDamage: number
   }>()
 
   private getState(p: PlayerLike) {
@@ -74,11 +75,21 @@ class CaptainMeleeAttack implements AttackStrategy {
         comboStep: 1, 
         comboWindowUntil: 0,
         airComboStep: 1,
-        airComboWindowUntil: 0
+        airComboWindowUntil: 0,
+        pendingDamage: 1
       } 
       this.state.set(p, s) 
     }
     return s
+  }
+
+  private getDamageFor(type: 'ground' | 'air', comboStep: number) {
+    if (type === 'ground') {
+      if (comboStep >= 3) return 2
+      return 1
+    }
+    if (comboStep >= 2) return 2
+    return 1
   }
 
   preload(scene: Phaser.Scene): void {
@@ -232,6 +243,8 @@ class CaptainMeleeAttack implements AttackStrategy {
       animationKey = `player_sword_attack${currentComboStep}`
       effectKey = `sword_effect_attack${currentComboStep}_anim`
     }
+
+    st.pendingDamage = this.getDamageFor(attackType, currentComboStep)
     
     // Play the appropriate attack animation
     player.sprite.anims.play(animationKey, true)
@@ -269,7 +282,8 @@ class CaptainMeleeAttack implements AttackStrategy {
           const enemy = enemyObj as Phaser.Physics.Arcade.Sprite
           const dir = playerSprite.flipX ? -1 : 1
           // Apply configured knockback and trigger hit anim
-          applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25)
+          const pendingDamage = Math.max(1, Math.round(this.getState(player).pendingDamage))
+          applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25, pendingDamage)
         })
         this.getState(player).collider = collider as any
       }
