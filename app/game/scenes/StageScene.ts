@@ -6,7 +6,10 @@ import { CaptainClownSkin } from '~/game/skins/CaptainClown'
 import { CaptainClownSwordSkin } from '~/game/skins/CaptainClownSword'
 import { ASSETS } from '~/game/config/assets'
 import { embedTilesets } from '~/game/systems/tileset'
-import { buildCollisionSolids, buildOneWayPlatforms, placeEnemies, placeDecorations, preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFrames, ensureEnemyRunAttackAnims, updateEnemyAI, getEnemyData } from '~/game/systems/objects'
+import { buildCollisionSolids, buildOneWayPlatforms, placeDecorations } from '~/game/systems/objects'
+import { preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFrames, ensureEnemyRunAttackAnims } from '~/game/enemies/animations'
+import { placeEnemies } from '~/game/enemies/spawn'
+import { updateEnemyAI, getEnemyData } from '~/game/enemies/ai'
 import { spawnPlayerFromLayer } from '~/game/systems/player'
 import { ensureAttackAnimationsForSkin, preloadAttackAssetsForSkin } from '~/game/systems/attack'
 import { fitCameraToMap } from '~/game/systems/camera'
@@ -79,7 +82,7 @@ export class StageScene extends Phaser.Scene {
     const map = this.make.tilemap({ key: embeddedKey })
     this.map = map
 
-  const tsMain = map.addTilesetImage('pirate-bomb-tileset', 'pirate-bomb')
+    const tsMain = map.addTilesetImage('pirate-bomb-tileset', 'pirate-bomb')
     const tsBricks = map.addTilesetImage('bricks') || undefined
     const tilesets = [tsMain, tsBricks].filter(Boolean) as Phaser.Tilemaps.Tileset[]
 
@@ -93,7 +96,7 @@ export class StageScene extends Phaser.Scene {
 
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
-      // One-way platforms
+    // One-way platforms
     const oneWays = buildOneWayPlatforms(this, map)
     onSceneTeardown(this, () => { try { oneWays.clear(true, true) } catch {} })
 
@@ -133,19 +136,20 @@ export class StageScene extends Phaser.Scene {
       }
     }
 
-  // Ensure enemy animations exist before spawning
-  ensureEnemyIdleAnims(this)
-  ensureEnemyRunAttackAnims(this)
-  const enemiesGroup = placeEnemies(this, map, solids)
-  this.enemiesGroup = enemiesGroup
+    // Ensure enemy animations exist before spawning
+    ensureEnemyIdleAnims(this)
+    ensureEnemyRunAttackAnims(this)
+    const enemiesGroup = placeEnemies(this, map, solids)
+    this.enemiesGroup = enemiesGroup
     onSceneTeardown(this, () => { try { enemiesGroup.clear(true, true) } catch {} })
-      if (this.player?.sprite && enemiesGroup && enemiesGroup.getLength() > 0) {
-        // Damage player on enemy collision
-        this.physics.add.collider(this.player.sprite, enemiesGroup, (_player, _enemy) => {
-          if (!this.player) return
-          this.player.damage(1)
-        })
-      }
+
+    if (this.player?.sprite && enemiesGroup && enemiesGroup.getLength() > 0) {
+      // Damage player on enemy collision
+      this.physics.add.collider(this.player.sprite, enemiesGroup, (_player, _enemy) => {
+        if (!this.player) return
+        this.player.damage(1)
+      })
+    }
 
     placeDecorations(this, map)
 
@@ -186,7 +190,7 @@ export class StageScene extends Phaser.Scene {
     if (this.debugEnabled && this.debugGfx && debugStore.playerCollider) {
       this.debugGfx.clear()
       this.player.drawDebug(this.debugGfx)
-        if (this.debugText) {
+      if (this.debugText) {
         const b = this.player.getBodySrc()
         this.debugText.setText(`F3: Collider Debug\nwidth:${b.width} height:${b.height}\noffsetX:${b.offsetX} offsetY:${b.offsetY}`)
       }
@@ -227,10 +231,11 @@ export class StageScene extends Phaser.Scene {
 
     // update enemies AI
     if (this.enemiesGroup) {
-      const playerSprite = this.player?.sprite
       this.enemiesGroup.children.iterate((obj: Phaser.GameObjects.GameObject) => {
         const s = obj as Phaser.Physics.Arcade.Sprite
-  if (s && s.body) updateEnemyAI(this, s, this.player)
+        if (s && s.body) {
+          updateEnemyAI(this, s, this.player)
+        }
         return true
       })
     }

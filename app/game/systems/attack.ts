@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import type { PlayerSkin } from '~/game/skins/PlayerSkin'
-import { ensureTinyWhiteTexture, applyEnemyHit } from '~/game/systems/objects'
+import { ensureTinyWhiteTexture } from '~/game/systems/objects'
+import { applyEnemyHit } from '~/game/enemies/ai'
 
 // Tunable melee range factors (relative to player's Arcade body)
 type MeleeRange = { widthFactor: number; heightFactor: number; forwardFactor: number; yOffset?: number }
