@@ -14,6 +14,7 @@ import { setupPlayerDebug } from '~/game/systems/debug'
 import { onSceneTeardown, teardownSceneDefaults } from '~/game/systems/lifecycle'
 import { embeddedMapCacheKey, rawMapCacheKey, getSelectedMap } from '~/game/config/maps'
 import { useDebugStore } from '@/stores/debug'
+import { attachHealthToPlayer, HealthBarHUD } from '~/game/systems/health'
 
 export function getSelectedSkin(): PlayerSkin {
   try {
@@ -36,6 +37,7 @@ export class StageScene extends Phaser.Scene {
   platformsDebugGfx!: Phaser.GameObjects.Graphics
   private debugCleanup?: () => void
   enemiesGroup?: Phaser.Physics.Arcade.Group
+  private healthHUD?: HealthBarHUD
 
   private debugStore = useDebugStore()
 
@@ -101,6 +103,18 @@ export class StageScene extends Phaser.Scene {
       const created = spawnPlayerFromLayer(this, map, skin, solids)
       if (created) {
         this.player = created.player
+        // attach health component (configurable later via difficulty)
+        const health = attachHealthToPlayer(this.player, { max: 6 })
+        // HUD
+        this.healthHUD = new HealthBarHUD(this)
+        this.healthHUD.create(health.max, health.current)
+        health.emitter.on('health-changed', (cur, max) => {
+          this.healthHUD?.updateValues(cur, max)
+        })
+        health.emitter.on('player-died', () => {
+          // simple effect: flash camera
+          this.cameras.main.flash(250, 255, 0, 0)
+        })
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
         const dbg = setupPlayerDebug(this, this.player)
         this.debugGfx = dbg.gfx
@@ -126,7 +140,11 @@ export class StageScene extends Phaser.Scene {
   this.enemiesGroup = enemiesGroup
     onSceneTeardown(this, () => { try { enemiesGroup.clear(true, true) } catch {} })
       if (this.player?.sprite && enemiesGroup && enemiesGroup.getLength() > 0) {
-        this.physics.add.collider(this.player.sprite, enemiesGroup)
+        // Damage player on enemy collision
+        this.physics.add.collider(this.player.sprite, enemiesGroup, (_player, _enemy) => {
+          if (!this.player) return
+          this.player.damage(1)
+        })
       }
 
     placeDecorations(this, map)

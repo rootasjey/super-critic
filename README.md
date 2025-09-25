@@ -126,6 +126,23 @@ node tools/rename-assets.mjs --revert
 - We currently embed external tilesets at runtime for the `first-scene.json` map. This keeps Tiled exports simple while avoiding additional HTTP requests.
 - If we prefer a build-time step, we can add a small tool to pre-embed tilesets and emit a `*-embedded.json` for faster loads and simpler scene code.
 
+## Player Health System
+
+Implemented basic health component + HUD (September 2025):
+
+- Files: `app/game/systems/health.ts` (component + `HealthBarHUD`).
+- Assets: `public/assets/sprites/ui/health-bar/*` registered in `assets.ts` (`health_bar_start|middle|end|fill_red`).
+- Attach: during player spawn (`StageScene.create`) via `attachHealthToPlayer(player, { max: 6 })`.
+- API: `player.damage(amount)`, `player.heal(amount)` convenience wrappers (no-op if health missing).
+- Events: `health-changed` (current, max), `player-died` emitted from component emitter.
+- HUD: Rebuilds automatically if max health changes; fixed to camera (scroll factor 0).
+
+Extending:
+- To add invulnerability frames, wrap `damage()` with a timestamp guard and emit an `invulnerable-start` event.
+- To change bar position or styling, modify `HealthBarHUD.config` or replace per-segment images.
+- For hearts instead of bar segments, reuse existing `heart` image and set one fill per HP.
+
+
 ## Tech Stack
 
 - Nuxt 4, Vue 3, Pinia

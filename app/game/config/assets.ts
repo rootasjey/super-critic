@@ -7,6 +7,10 @@ export type ImageKey =
   | 'enemy2'
   | 'enemy3'
   | 'heart'
+  | 'health_bar_start'
+  | 'health_bar_middle'
+  | 'health_bar_end'
+  | 'health_bar_fill_red'
   | 'door_closed'
   | 'barrel'
   | 'table'
@@ -34,6 +38,10 @@ export const ASSETS = {
 
     // UI + decorations
   heart: '/assets/sprites/ui/heart/idle/idle-01.png',
+  health_bar_start: '/assets/sprites/ui/health-bar/health-bar-start.png',
+  health_bar_middle: '/assets/sprites/ui/health-bar/health-bar-middle.png',
+  health_bar_end: '/assets/sprites/ui/health-bar/health-bar-end.png',
+  health_bar_fill_red: '/assets/sprites/ui/health-bar/health-bar-fill-red.png',
   door_closed: '/assets/sprites/props/door/closed/closed-01.png',
   barrel: '/assets/sprites/props/other-objects/other-objects-barrel.png',
   table: '/assets/sprites/props/other-objects/other-objects-table.png',

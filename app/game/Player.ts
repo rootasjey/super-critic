@@ -57,6 +57,16 @@ export class Player {
   armed = false
   armedUntil = 0
   private attackPressedAt = 0
+  // health (attached dynamically by health system)
+  // Using index signature to avoid tight coupling; see systems/health.ts
+  // health?: HealthComponent (but we don't import to keep Player lean)
+
+  // Invulnerability
+  private invulnUntil = 0
+  private invulnFlashTimer = 0
+  private invulnFlashOn = false
+  private readonly INVULN_DURATION = 1000 // ms
+  private readonly INVULN_FLASH_INTERVAL = 80 // ms
 
   constructor(scene: Phaser.Scene, opts: PlayerOptions = {}) {
     this.scene = scene
@@ -256,6 +266,18 @@ export class Player {
     if (!this.sprite || !this.cursors) return
     const body = this.sprite.body as Phaser.Physics.Arcade.Body
     const now = this.scene.time.now
+
+    // Invulnerability flash effect
+    if (now < this.invulnUntil) {
+      if (now > this.invulnFlashTimer) {
+        this.invulnFlashOn = !this.invulnFlashOn
+        this.sprite.setAlpha(this.invulnFlashOn ? 0.4 : 1)
+        this.invulnFlashTimer = now + this.INVULN_FLASH_INTERVAL
+      }
+    } else if (this.invulnFlashOn) {
+      this.sprite.setAlpha(1)
+      this.invulnFlashOn = false
+    }
     // attack input (edge on keydown)
     if (Phaser.Input.Keyboard.JustDown(this.keyX)) {
       this.attackPressedAt = now
@@ -355,5 +377,22 @@ export class Player {
     const useSword = this.armed || isAttackAnimKey(this.sprite.anims?.currentAnim?.key)
     const prefix = useSword ? 'player_sword_' : 'player_'
     return `${prefix}${name}`
+  }
+
+  // Convenience wrappers (no-op if health not attached)
+  damage(amount: number) {
+    const h: any = (this as any).health
+    const now = this.scene.time.now
+    if (h && typeof h.damage === 'function') {
+      if (now < this.invulnUntil) return // ignore if invulnerable
+      h.damage(amount)
+      this.invulnUntil = now + this.INVULN_DURATION
+      this.invulnFlashTimer = now
+      this.invulnFlashOn = false
+    }
+  }
+  heal(amount: number) {
+    const h: any = (this as any).health
+    if (h && typeof h.heal === 'function') h.heal(amount)
   }
 }
