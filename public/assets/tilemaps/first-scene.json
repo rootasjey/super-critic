@@ -311,9 +311,14 @@
                  "name":"player",
                  "properties":[
                         {
+                         "name":"extraJumps",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"health",
                          "type":"int",
-                         "value":500
+                         "value":300
                         }],
                  "rotation":0,
                  "type":"",

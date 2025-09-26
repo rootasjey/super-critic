@@ -38,6 +38,7 @@
         "first-scene.json"
     ],
     "project": "super-critic.tiled-project",
+    "property.type": "int",
     "recentFiles": [
         "/Users/rootasjey/GitHub/super-critic/public/assets/tilesets/pirate-bomb.json",
         "first-scene.json",

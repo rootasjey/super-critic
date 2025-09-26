@@ -69,8 +69,6 @@ export function startCameraFollow(
 }
 
 export function clearCameraEffects(scene: Phaser.Scene) {
-  const cam = scene.cameras.main as any
-  try {
-    if (typeof cam.resetFX === 'function') cam.resetFX()
-  } catch {}
+  const cam = scene.cameras.main
+  cam.resetFX()
 }

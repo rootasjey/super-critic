@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { Player } from '~/game/Player'
+import { Player, type PlayerOptions } from '~/game/Player'
 import type { PlayerSkin } from '~/game/skins/PlayerSkin'
 import { BombGuySkin } from '~/game/skins/BombGuy'
 import { CaptainClownSkin } from '~/game/skins/CaptainClown'
@@ -104,22 +104,124 @@ export class StageScene extends Phaser.Scene {
     // Player spawn
     {
       const skin = getSelectedSkin()
-      const created = spawnPlayerFromLayer(this, map, skin, solids)
+      // Extract health from Tiled map custom property if present
+      let playerHealth = 6 // default
+      const playerOptions: PlayerOptions = {}
+      const playerLayer = map.getObjectLayer('player')
+      if (playerLayer && playerLayer.objects && playerLayer.objects.length > 0) {
+        const playerObj = playerLayer.objects.find(o => (o.name || '').toLowerCase() === 'player') || playerLayer.objects[0]
+        if (playerObj && Array.isArray(playerObj.properties)) {
+          const props = playerObj.properties as Array<{ name: string; value: unknown }>
+          const getProp = (name: string) => props.find(p => p.name === name)
+          const getNumber = (name: string) => {
+            const prop = getProp(name)
+            if (!prop) return undefined
+            if (typeof prop.value === 'number') return prop.value
+            if (typeof prop.value === 'string') {
+              const parsed = Number(prop.value)
+              return Number.isFinite(parsed) ? parsed : undefined
+            }
+            return undefined
+          }
+          const getBoolean = (name: string) => {
+            const prop = getProp(name)
+            if (!prop) return undefined
+            const value = prop.value
+            if (typeof value === 'boolean') return value
+            if (typeof value === 'number') return value !== 0
+            if (typeof value === 'string') {
+              const lower = value.trim().toLowerCase()
+              if (lower === 'true' || lower === 'yes' || lower === 'on') return true
+              if (lower === 'false' || lower === 'no' || lower === 'off') return false
+            }
+            return undefined
+          }
+
+          const healthProp = getNumber('health')
+          if (typeof healthProp === 'number') playerHealth = healthProp
+
+          const extraJumps = getNumber('extraJumps')
+          if (typeof extraJumps === 'number') playerOptions.extraJumps = extraJumps
+          const doubleJumpFlag = getBoolean('doubleJump')
+          if (doubleJumpFlag !== undefined) {
+            playerOptions.extraJumps = doubleJumpFlag
+              ? (playerOptions.extraJumps ?? 1)
+              : 0
+          }
+
+          const wallJumpFlag = getBoolean('wallJump') ?? getBoolean('wallJumpEnabled')
+          if (wallJumpFlag !== undefined) playerOptions.wallJumpEnabled = wallJumpFlag
+          const wallJumpH = getNumber('wallJumpHorizontalSpeed')
+          if (typeof wallJumpH === 'number') playerOptions.wallJumpHorizontalSpeed = wallJumpH
+          const wallJumpV = getNumber('wallJumpVerticalSpeed')
+          if (typeof wallJumpV === 'number') playerOptions.wallJumpVerticalSpeed = wallJumpV
+          const wallGrace = getNumber('wallJumpGraceTime')
+          if (typeof wallGrace === 'number') playerOptions.wallJumpGraceTime = wallGrace
+          const wallSlideSpeed = getNumber('wallSlideSpeed')
+          if (typeof wallSlideSpeed === 'number') playerOptions.wallSlideSpeed = wallSlideSpeed
+        }
+      }
+      try {
+        const params = new URLSearchParams(window.location.search)
+        if (params.has('doubleJump')) {
+          const value = params.get('doubleJump') || ''
+          if (value === '' || value.toLowerCase() === 'true' || value === '1') {
+            playerOptions.extraJumps = playerOptions.extraJumps ?? 1
+          } else if (value.toLowerCase() === 'false' || value === '0') {
+            playerOptions.extraJumps = 0
+          } else {
+            const parsed = Number(value)
+            if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
+          }
+        }
+        if (params.has('extraJumps')) {
+          const parsed = Number(params.get('extraJumps'))
+          if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
+        }
+        if (params.has('wallJump')) {
+          const value = (params.get('wallJump') || '').toLowerCase()
+          if (value === '' || value === 'true' || value === '1' || value === 'on') {
+            playerOptions.wallJumpEnabled = true
+          } else if (value === 'false' || value === '0' || value === 'off') {
+            playerOptions.wallJumpEnabled = false
+          }
+        }
+        if (params.has('wallJumpH')) {
+          const parsed = Number(params.get('wallJumpH'))
+          if (Number.isFinite(parsed)) playerOptions.wallJumpHorizontalSpeed = parsed
+        }
+        if (params.has('wallJumpV')) {
+          const parsed = Number(params.get('wallJumpV'))
+          if (Number.isFinite(parsed)) playerOptions.wallJumpVerticalSpeed = parsed
+        }
+        if (params.has('wallGrace')) {
+          const parsed = Number(params.get('wallGrace'))
+          if (Number.isFinite(parsed)) playerOptions.wallJumpGraceTime = parsed
+        }
+        if (params.has('wallSlide')) {
+          const parsed = Number(params.get('wallSlide'))
+          if (Number.isFinite(parsed)) playerOptions.wallSlideSpeed = parsed
+        }
+      } catch {}
+  
+      const created = spawnPlayerFromLayer(this, map, skin, solids, playerOptions)
       if (created) {
         this.player = created.player
-        // attach health component (configurable later via difficulty)
-        const health = attachHealthToPlayer(this.player, { max: 6 })
-        // HUD
+        // attach health component using extracted value
+        const health = attachHealthToPlayer(this.player, { max: playerHealth })
         this.healthHUD = new HealthBarHUD(this)
         this.healthHUD.create(health.max, health.current)
         this.healthHUD.attachToCamera(this.cameras.main)
+        
         health.emitter.on('health-changed', (cur, max) => {
           this.healthHUD?.updateValues(cur, max)
         })
+        
         health.emitter.on('player-died', () => {
           // simple effect: flash camera
           this.cameras.main.flash(250, 255, 0, 0)
         })
+        
         const dbg = setupPlayerDebug(this, this.player)
         this.debugGfx = dbg.gfx
         this.platformsDebugGfx = dbg.platformsGfx
@@ -152,11 +254,11 @@ export class StageScene extends Phaser.Scene {
     onSceneTeardown(this, () => { try { enemiesGroup.clear(true, true) } catch {} })
 
     if (this.player?.sprite && enemiesGroup && enemiesGroup.getLength() > 0) {
-      // Damage player on enemy collision
-      this.physics.add.collider(this.player.sprite, enemiesGroup, (_player, _enemy) => {
-        if (!this.player) return
-        this.player.damage(1)
-      })
+        // Damage player on enemy overlap (no physical blocking)
+        this.physics.add.overlap(this.player.sprite, enemiesGroup, (_player, _enemy) => {
+          if (!this.player) return
+          this.player.damage(1)
+        })
     }
 
     placeDecorations(this, map)

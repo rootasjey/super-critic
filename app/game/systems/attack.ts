@@ -1,3 +1,13 @@
+// Attack hit config: controls how many times and how many enemies can be hit per attack
+export type AttackHitConfig = {
+  maxHitsPerEnemy: number // e.g. 1 for single-hit, >1 for multi-hit
+  maxEnemiesPerAttack: number // e.g. 1 for single-target, >1 for multi-target
+}
+
+const defaultAttackHitConfig: AttackHitConfig = {
+  maxHitsPerEnemy: 1,
+  maxEnemiesPerAttack: Infinity,
+}
 import Phaser from 'phaser'
 import type { PlayerSkin } from '~/game/skins/PlayerSkin'
 import { ensureTinyWhiteTexture } from '~/game/systems/objects'
@@ -77,6 +87,14 @@ type CaptainMeleeState = {
 
 class CaptainMeleeAttack implements AttackStrategy {
   private state = new WeakMap<PlayerLike, CaptainMeleeState>()
+  private hitConfig: AttackHitConfig = { ...defaultAttackHitConfig }
+
+  /**
+   * Configure attack hit behavior (single/multi-hit, single/multi-target)
+   */
+  configureHitBehavior(config: Partial<AttackHitConfig>) {
+    this.hitConfig = { ...this.hitConfig, ...config }
+  }
 
   private getState(p: PlayerLike): CaptainMeleeState {
     let s = this.state.get(p)
@@ -317,10 +335,18 @@ class CaptainMeleeAttack implements AttackStrategy {
       // Overlap: damage only actual overlaps (hitbox is small and placed in front)
       const enemiesGroup: Phaser.Physics.Arcade.Group | undefined = (scene as any).enemiesGroup
       if (enemiesGroup) {
+        // Track hit enemies for this attack
+        let hitEnemies = new Map<Phaser.Physics.Arcade.Sprite, number>()
         const collider = scene.physics.add.overlap(hitbox, enemiesGroup, (hb, enemyObj) => {
           const hbBody2 = (hitbox!.body as Phaser.Physics.Arcade.Body | null)
           if (!hbBody2 || !hbBody2.enable) return
           const enemy = enemyObj as Phaser.Physics.Arcade.Sprite
+          // Only allow up to maxHitsPerEnemy
+          const prevHits = hitEnemies.get(enemy) || 0
+          if (prevHits >= this.hitConfig.maxHitsPerEnemy) return
+          hitEnemies.set(enemy, prevHits + 1)
+          // Only allow up to maxEnemiesPerAttack
+          if (hitEnemies.size > this.hitConfig.maxEnemiesPerAttack) return
           const dir = playerSprite.flipX ? -1 : 1
           // Apply configured knockback and trigger hit anim
           const pendingDamage = Math.max(1, Math.round(this.getState(player).pendingDamage))
@@ -328,6 +354,10 @@ class CaptainMeleeAttack implements AttackStrategy {
           applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25, pendingDamage, { critical: st2.pendingIsCrit, critKnockbackMultiplier: st2.critKnockbackMultiplier })
         })
         this.getState(player).collider = collider as any
+        // Reset hitEnemies after each attack animation completes
+        playerSprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+          hitEnemies = new Map<Phaser.Physics.Arcade.Sprite, number>()
+        })
       }
     }
 

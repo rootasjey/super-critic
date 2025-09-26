@@ -10,6 +10,12 @@ export type EnemyAnimSet = {
 }
 export type EnemyBodyConfig = { widthFactor: number; heightFactor: number; bottomPad: number }
 
+/**
+ * EnemyAttackRange controls the reach of an enemy's attack.
+ * - max: horizontal reach in pixels
+ * - min: minimum distance for attack (optional)
+ * - vertical: vertical reach in pixels (optional)
+ */
 export type EnemyAttackRange = { min?: number; max: number; vertical?: number }
 export type EnemyMeleeHitbox = {
 	widthFactor: number
@@ -47,6 +53,11 @@ export type EnemyDefinition = {
 	anims: EnemyAnimSet
 	body: EnemyBodyConfig
 	attacks: EnemyAttackDefinition[]
+	bodyAttack?: {
+		damage: number
+		knockback?: EnemyKnockback
+		debugColor?: number
+	}
 	defaults?: Partial<EnemyDefaults>
 	maxHealth: number
 }
@@ -63,39 +74,44 @@ export const BASE_DEFAULTS: EnemyDefaults = {
 
 export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 	enemy1: {
-		key: 'enemy1',
-		anims: {
-			idle: { folder: '/assets/sprites/enemies/enemy-bald-pirate/idle', frames: 34, frameRate: 12 },
-			run: { folder: '/assets/sprites/enemies/enemy-bald-pirate/run', frames: 14, frameRate: 14 },
-			attacks: {
-				slash: { folder: '/assets/sprites/enemies/enemy-bald-pirate/attack', frames: 12, frameRate: 10 },
-			},
-			hit: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
-			death: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
+	key: 'enemy1',
+	anims: {
+		idle: { folder: '/assets/sprites/enemies/enemy-bald-pirate/idle', frames: 34, frameRate: 12 },
+		run: { folder: '/assets/sprites/enemies/enemy-bald-pirate/run', frames: 14, frameRate: 14 },
+		attacks: {
+			slash: { folder: '/assets/sprites/enemies/enemy-bald-pirate/attack', frames: 12, frameRate: 10 },
 		},
-		body: { widthFactor: 0.4, heightFactor: 0.9, bottomPad: 2 },
-		attacks: [
-			{
-				key: 'slash',
-				animation: 'slash',
-				range: { max: 56, vertical: 50 },
-				windup: 0.32,
-				recover: 0.45,
-				cooldown: 1.15,
-				damage: 1,
-				hitbox: { widthFactor: 0.82, heightFactor: 0.8, forwardFactor: 0.72, verticalOffsetFactor: -0.08 },
-				knockback: { x: 160, y: -90 },
-				debugColor: 0xff8833,
-			},
-		],
-		defaults: {
-			aggroRange: 140,
-			verticalAggro: 68,
-			patrolSpeed: 65,
-		},
-		maxHealth: 30,
+		hit: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
+		death: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
 	},
-	enemy2: {
+	body: { widthFactor: 0.4, heightFactor: 0.9, bottomPad: 2 },
+	attacks: [
+		{
+			key: 'slash',
+			animation: 'slash',
+			range: { max: 56, vertical: 50 },
+			windup: 0.32,
+			recover: 0.45,
+			cooldown: 1.15,
+			damage: 20,
+			hitbox: { widthFactor: 0.82, heightFactor: 0.8, forwardFactor: 0.72, verticalOffsetFactor: -0.08 },
+			knockback: { x: 160, y: -90 },
+			debugColor: 0xff8833,
+		},
+	],
+	bodyAttack: {
+		damage: 1,
+		knockback: { x: 80, y: -40 },
+		debugColor: 0xffcc00,
+	},
+	defaults: {
+		aggroRange: 140,
+		verticalAggro: 68,
+		patrolSpeed: 65,
+	},
+	maxHealth: 30,
+},
+		enemy2: {
 		key: 'enemy2',
 		anims: {
 			idle: { folder: '/assets/sprites/enemies/enemy-cucumber/idle', frames: 36, frameRate: 12 },
@@ -116,7 +132,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				windup: 0.28,
 				recover: 0.42,
 				cooldown: 1.05,
-				damage: 1,
+				damage: 30,
 				hitbox: { widthFactor: 0.78, heightFactor: 0.75, forwardFactor: 0.7, verticalOffsetFactor: -0.05 },
 				knockback: { x: 140, y: -80 },
 				debugColor: 0x33aaff,
@@ -134,6 +150,11 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				debugColor: 0x55ffcc,
 			},
 		],
+		bodyAttack: {
+			damage: 2,
+			knockback: { x: 60, y: -30 },
+			debugColor: 0x33ffaa,
+		},
 		defaults: {
 			aggroRange: 180,
 			verticalAggro: 72,
@@ -143,7 +164,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 		},
 		maxHealth: 40,
 	},
-	enemy3: {
+		enemy3: {
 		key: 'enemy3',
 		anims: {
 			idle: { folder: '/assets/sprites/enemies/enemy-big-guy/idle', frames: 38, frameRate: 10 },
@@ -163,12 +184,17 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				windup: 0.42,
 				recover: 0.7,
 				cooldown: 1.6,
-				damage: 2,
+				damage: 45,
 				hitbox: { widthFactor: 0.95, heightFactor: 0.88, forwardFactor: 0.62, verticalOffsetFactor: -0.05 },
 				knockback: { x: 260, y: -140 },
 				debugColor: 0xff3355,
 			},
 		],
+		bodyAttack: {
+			damage: 3,
+			knockback: { x: 100, y: -60 },
+			debugColor: 0xff3355,
+		},
 		defaults: {
 			patrolSpeed: 52,
 			aggroRange: 165,

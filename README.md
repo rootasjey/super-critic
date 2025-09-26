@@ -26,7 +26,7 @@ npm run build && npm run preview
 ## Controls & Debug
 
 - Move: arrows or `A`/`D`
-- Jump: `Space` (coyote time + jump buffer)
+- Jump: `Space` / `Up` (coyote time + jump buffer, optional double jump)
 - Drop through one-way: double-tap `Down` or `S`
 - Toggle debug: `F2`
 - Live collider tune (when debug is on):
@@ -39,6 +39,25 @@ npm run build && npm run preview
 Query params
 - `?debug=true` enables debug at boot
 - `?skin=bomb`, `?skin=captain`, or `?skin=captain-sword` selects the player skin
+- `?doubleJump=0|1|N` toggles extra jumps (`1` = classic double jump)
+- `?extraJumps=N` directly sets the number of mid-air jumps
+- `?wallJump=true|false` enables/disables wall jumps
+- `?wallJumpH=###`, `?wallJumpV=###`, `?wallGrace=###`, `?wallSlide=###` tweak wall jump horizontal/vertical speeds, grace window (ms), and slide speed (px/s)
+
+### Player Movement Tuning
+
+Player spawn objects in Tiled (`player` layer) can override movement:
+
+- `health`: max hearts (number)
+- `doubleJump`: boolean toggle (overrides `extraJumps` when false)
+- `extraJumps`: number of additional mid-air jumps (0 disables)
+- `wallJump` / `wallJumpEnabled`: boolean toggle
+- `wallJumpHorizontalSpeed`: horizontal boost applied on wall jump (px/s)
+- `wallJumpVerticalSpeed`: vertical launch speed (px/s)
+- `wallJumpGraceTime`: milliseconds a wall jump stays available after leaving contact
+- `wallSlideSpeed`: max fall speed while holding toward a wall (px/s)
+
+Query params of the same name override the map config at runtime, making it easy to test different values without re-exporting the map.
 
 ## Project Structure
 

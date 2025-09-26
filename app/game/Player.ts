@@ -14,6 +14,12 @@ export type PlayerOptions = {
   jumpBufferTime?: number
   downDoubleTapWindow?: number
   dropThroughDuration?: number
+  extraJumps?: number
+  wallJumpEnabled?: boolean
+  wallJumpHorizontalSpeed?: number
+  wallJumpVerticalSpeed?: number
+  wallJumpGraceTime?: number
+  wallSlideSpeed?: number
   // Visual + physics tuning (per-skin overrides)
   desiredDisplayHeight?: number // target on-screen height in px; scales frames proportionally
   origin?: { x: number; y: number } // default bottom-center so feet sit on ground
@@ -41,7 +47,18 @@ export class Player {
   dropThroughUntil = 0
   downDoubleTapWindow: number
   dropThroughDuration: number
+  extraJumps = 0
+  airJumpsRemaining = 0
+  jumpReleased = true
   private wasOnGround = false
+  wallJumpEnabled = false
+  wallJumpHorizontalSpeed = 0
+  wallJumpVerticalSpeed = 0
+  wallJumpGraceTime = 0
+  wallSlideSpeed = 0
+  private lastWallContactLeft = 0
+  private lastWallContactRight = 0
+  private wallJumpLockUntil = 0
   // skin/physics
   desiredDisplayHeight: number
   origin: { x: number; y: number }
@@ -79,6 +96,13 @@ export class Player {
     this.jumpBufferTime = opts.jumpBufferTime ?? 120
     this.downDoubleTapWindow = opts.downDoubleTapWindow ?? 250
     this.dropThroughDuration = opts.dropThroughDuration ?? 100
+    this.extraJumps = Math.max(0, Math.floor(opts.extraJumps ?? 0))
+    this.airJumpsRemaining = this.extraJumps
+    this.wallJumpEnabled = opts.wallJumpEnabled ?? false
+    this.wallJumpHorizontalSpeed = Math.abs(opts.wallJumpHorizontalSpeed ?? Math.round(this.maxSpeed * 0.8))
+    this.wallJumpVerticalSpeed = opts.wallJumpVerticalSpeed ?? this.jumpSpeed
+    this.wallJumpGraceTime = Math.max(0, opts.wallJumpGraceTime ?? 160)
+    this.wallSlideSpeed = Math.max(0, opts.wallSlideSpeed ?? 0)
     // Captain Clown Nose frames are 64x40; scale to ~58px tall like Bomb Guy
     this.skin = opts.skin ?? CaptainClownSkin
     this.desiredDisplayHeight = opts.desiredDisplayHeight ?? this.skin.desiredDisplayHeight
@@ -129,23 +153,23 @@ export class Player {
   }
 
   spawn(x: number, y: number) {
-    const s = this.scene.physics.add.sprite(x, y, 'player_idle_1')
-    this.sprite = s
-    s.setCollideWorldBounds(true)
-    s.setBounce(0.05)
+    const sprite = this.scene.physics.add.sprite(x, y, 'player_idle_1')
+    this.sprite = sprite
+    sprite.setCollideWorldBounds(true)
+    sprite.setBounce(0.05)
     // Set origin (default center) and scale to desired display height
-    s.setOrigin(this.origin.x, this.origin.y)
-    const baseW = s.frame.width
-    const baseH = s.frame.height
+    sprite.setOrigin(this.origin.x, this.origin.y)
+    const baseW = sprite.frame.width
+    const baseH = sprite.frame.height
     const scale = (this.desiredDisplayHeight && baseH > 0)
       ? (this.desiredDisplayHeight / baseH)
       : 1
     this.baseW = baseW
     this.baseH = baseH
     this.scaleFactor = scale
-    if (scale !== 1) s.setScale(scale)
+    if (scale !== 1) sprite.setScale(scale)
 
-    const body = s.body as Phaser.Physics.Arcade.Body
+    const body = sprite.body as Phaser.Physics.Arcade.Body
     body.setMaxVelocity(this.maxSpeed, 1000)
     body.setDrag(this.drag, 0)
 
@@ -165,9 +189,12 @@ export class Player {
     this.keyX = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.X)
 
     // jump buffer
-    this.scene.input.keyboard!.on('keydown-SPACE', () => {
+    const keyboard = this.scene.input.keyboard!
+    const recordJumpPress = () => {
       this.lastJumpPress = this.scene.time.now
-    })
+    }
+    keyboard.on('keydown-SPACE', recordJumpPress)
+    keyboard.on('keydown-UP', recordJumpPress)
 
     // drop-through double-tap down
     const onDown = () => {
@@ -184,8 +211,22 @@ export class Player {
     this.scene.input.keyboard!.on('keydown-S', onDown)
 
     // start anim
-    s.play('player_idle')
-    return s
+    sprite.play('player_idle')
+    this.resetAirJumps()
+    this.jumpReleased = true
+    return sprite
+  }
+
+  private resetAirJumps() {
+    this.airJumpsRemaining = this.extraJumps
+  }
+
+  private performJump(speed: number) {
+    if (!this.sprite) return
+    this.sprite.setVelocityY(-speed)
+    this.lastJumpPress = 0
+    this.lastOnGround = 0
+    this.jumpReleased = false
   }
 
   private applyBodyFromSrc() {
@@ -294,8 +335,6 @@ export class Player {
       this.armed = false
     }
 
-    if (body.blocked.down) this.lastOnGround = now
-
     const left = this.cursors.left.isDown || this.keyA.isDown
     const right = this.cursors.right.isDown || this.keyD.isDown
 
@@ -313,21 +352,71 @@ export class Player {
       // horizontal anim will be resolved after vertical state
     }
 
-    const wantsToJump = (this.cursors.up.isDown || (now - this.lastJumpPress) < this.jumpBufferTime)
-    const canUseCoyote = (now - this.lastOnGround) <= this.coyoteTime
-    if (wantsToJump && (body.blocked.down || canUseCoyote)) {
-      this.sprite.setVelocityY(-this.jumpSpeed)
-      this.lastJumpPress = 0
-      this.lastOnGround = 0
+    const onGround = body.blocked.down
+    if (onGround) {
+      this.lastOnGround = now
+      if (!this.wasOnGround || this.airJumpsRemaining !== this.extraJumps) {
+        this.resetAirJumps()
+      }
     }
 
-    if (!this.cursors.up.isDown && !this.cursors.space.isDown && body.velocity.y < 0) {
+    if (!onGround && (body.blocked.left || body.touching.left)) this.lastWallContactLeft = now
+    if (!onGround && (body.blocked.right || body.touching.right)) this.lastWallContactRight = now
+
+    const spaceKey = this.cursors.space
+    const jumpKeyDown = this.cursors.up.isDown || (spaceKey?.isDown ?? false)
+    if (!jumpKeyDown) this.jumpReleased = true
+
+    const jumpJustPressed = Phaser.Input.Keyboard.JustDown(this.cursors.up)
+      || (spaceKey ? Phaser.Input.Keyboard.JustDown(spaceKey) : false)
+    const bufferedJump = (now - this.lastJumpPress) <= this.jumpBufferTime
+    const wantsToJump = jumpKeyDown || bufferedJump
+    const canUseCoyote = (now - this.lastOnGround) <= this.coyoteTime
+    let performedJump = false
+
+    if (wantsToJump) {
+      if ((onGround || canUseCoyote) && !performedJump) {
+        this.resetAirJumps()
+        this.performJump(this.jumpSpeed)
+        performedJump = true
+      } else if (!onGround && this.wallJumpEnabled && now >= this.wallJumpLockUntil) {
+        const canWallJumpLeft = (now - this.lastWallContactLeft) <= this.wallJumpGraceTime
+        const canWallJumpRight = (now - this.lastWallContactRight) <= this.wallJumpGraceTime
+        if ((canWallJumpLeft || canWallJumpRight) && (jumpJustPressed || bufferedJump) && this.jumpReleased) {
+          const horizontal = canWallJumpLeft ? this.wallJumpHorizontalSpeed : -this.wallJumpHorizontalSpeed
+          if (horizontal !== 0) body.setVelocityX(horizontal)
+          if (horizontal > 0) this.sprite.setFlipX(false)
+          else if (horizontal < 0) this.sprite.setFlipX(true)
+          const wallJumpY = this.wallJumpVerticalSpeed > 0 ? this.wallJumpVerticalSpeed : this.jumpSpeed
+          this.performJump(wallJumpY)
+          this.resetAirJumps()
+          this.wallJumpLockUntil = now + 180
+          performedJump = true
+        }
+      }
+
+      if (!performedJump && this.airJumpsRemaining > 0 && (jumpJustPressed || bufferedJump) && this.jumpReleased) {
+        this.performJump(this.jumpSpeed)
+        this.airJumpsRemaining -= 1
+        performedJump = true
+      }
+    }
+
+    if (this.wallJumpEnabled && this.wallSlideSpeed > 0 && !onGround) {
+      const huggedLeft = (now - this.lastWallContactLeft) <= this.wallJumpGraceTime
+      const huggedRight = (now - this.lastWallContactRight) <= this.wallJumpGraceTime
+      const sliding = (huggedLeft && left) || (huggedRight && right)
+      if (sliding && body.velocity.y > this.wallSlideSpeed) {
+        body.setVelocityY(this.wallSlideSpeed)
+      }
+    }
+
+    if (!jumpKeyDown && body.velocity.y < 0) {
       body.setVelocityY(body.velocity.y * 0.6)
     }
 
     // vertical state animations
     const vy = body.velocity.y
-    const onGround = body.blocked.down
     const playingKey = this.sprite.anims?.currentAnim?.key || ''
     // Check if attack animation is actually playing (not just the key, but the animation progress)
     let attackActive = isAttackAnimKey(playingKey) && this.sprite.anims.isPlaying

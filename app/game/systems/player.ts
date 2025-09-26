@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { Player } from '~/game/Player'
+import type { PlayerOptions } from '~/game/Player'
 import type { PlayerSkin } from '~/game/skins/PlayerSkin'
 
 export function spawnPlayerFromLayer(
@@ -7,6 +8,7 @@ export function spawnPlayerFromLayer(
   map: Phaser.Tilemaps.Tilemap,
   skin: PlayerSkin,
   solids: Phaser.Physics.Arcade.StaticGroup,
+  options?: PlayerOptions,
 ) {
   const playerLayer = map.getObjectLayer('player')
   if (!playerLayer || !playerLayer.objects || playerLayer.objects.length === 0) return null
@@ -15,8 +17,13 @@ export function spawnPlayerFromLayer(
   const ox = (obj.x ?? 0)
   const oy = (obj.y ?? 0) - (obj.height ?? 0)
 
+  const playerOptions: PlayerOptions = {
+    ...(options ?? {}),
+    skin,
+  }
+
   Player.createAnimations(scene, skin)
-  const player = new Player(scene as any, { skin })
+  const player = new Player(scene as any, playerOptions)
   const sprite = player.spawn(ox, oy)
   scene.physics.add.collider(sprite, solids)
   ;(sprite as any).__controller = player
