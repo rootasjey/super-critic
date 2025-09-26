@@ -51,6 +51,7 @@ export function preloadEnemyRunAttackFrames(scene: Phaser.Scene) {
 	for (const [key, def] of enemyEntries()) {
 		preloadAnimFrames(scene, key, 'run', def.anims.run)
 		if (def.anims.hit) preloadAnimFrames(scene, key, 'hit', def.anims.hit)
+		if (def.anims.death) preloadAnimFrames(scene, key, 'death', def.anims.death)
 		for (const [attackKey, spec] of Object.entries(def.anims.attacks)) {
 			preloadAnimFrames(scene, key, `attack_${attackKey}`, spec)
 		}
@@ -67,6 +68,7 @@ export function ensureEnemyRunAttackAnims(scene: Phaser.Scene) {
 	for (const [key, def] of enemyEntries()) {
 		ensureAnimation(scene, key, 'run', def.anims.run, -1)
 		if (def.anims.hit) ensureAnimation(scene, key, 'hit', def.anims.hit, 0)
+		if (def.anims.death) ensureAnimation(scene, key, 'death', def.anims.death, 0)
 		for (const [attackKey, spec] of Object.entries(def.anims.attacks)) {
 			ensureAnimation(scene, key, `attack_${attackKey}`, spec, 0, `attack:${attackKey}`)
 		}

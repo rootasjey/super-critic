@@ -1,7 +1,13 @@
 export type EnemyKey = 'enemy1' | 'enemy2' | 'enemy3'
 
 export type AnimSpec = { folder: string; frames: number; frameRate: number }
-export type EnemyAnimSet = { idle: AnimSpec; run: AnimSpec; attacks: Record<string, AnimSpec>; hit?: AnimSpec }
+export type EnemyAnimSet = {
+	idle: AnimSpec
+	run: AnimSpec
+	attacks: Record<string, AnimSpec>
+	hit?: AnimSpec
+	death?: AnimSpec
+}
 export type EnemyBodyConfig = { widthFactor: number; heightFactor: number; bottomPad: number }
 
 export type EnemyAttackRange = { min?: number; max: number; vertical?: number }
@@ -42,6 +48,7 @@ export type EnemyDefinition = {
 	body: EnemyBodyConfig
 	attacks: EnemyAttackDefinition[]
 	defaults?: Partial<EnemyDefaults>
+	maxHealth: number
 }
 
 export const BASE_DEFAULTS: EnemyDefaults = {
@@ -64,6 +71,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				slash: { folder: '/assets/sprites/enemies/enemy-bald-pirate/attack', frames: 12, frameRate: 10 },
 			},
 			hit: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
+			death: { folder: '/assets/sprites/enemies/enemy-bald-pirate/hit', frames: 8, frameRate: 14 },
 		},
 		body: { widthFactor: 0.4, heightFactor: 0.9, bottomPad: 2 },
 		attacks: [
@@ -85,6 +93,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 			verticalAggro: 68,
 			patrolSpeed: 65,
 		},
+		maxHealth: 30,
 	},
 	enemy2: {
 		key: 'enemy2',
@@ -96,6 +105,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				gust: { folder: '/assets/sprites/enemies/enemy-cucumber/blow-the-wick', frames: 11, frameRate: 10 },
 			},
 			hit: { folder: '/assets/sprites/enemies/enemy-cucumber/hit', frames: 8, frameRate: 14 },
+			death: { folder: '/assets/sprites/enemies/enemy-cucumber/hit', frames: 8, frameRate: 14 },
 		},
 		body: { widthFactor: 0.36, heightFactor: 0.82, bottomPad: 2 },
 		attacks: [
@@ -131,6 +141,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 			restMin: 0.9,
 			restMax: 1.9,
 		},
+		maxHealth: 40,
 	},
 	enemy3: {
 		key: 'enemy3',
@@ -141,6 +152,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 				slam: { folder: '/assets/sprites/enemies/enemy-big-guy/attack', frames: 11, frameRate: 8 },
 			},
 			hit: { folder: '/assets/sprites/enemies/enemy-big-guy/hit', frames: 8, frameRate: 12 },
+			death: { folder: '/assets/sprites/enemies/enemy-big-guy/hit', frames: 8, frameRate: 12 },
 		},
 		body: { widthFactor: 0.46, heightFactor: 0.74, bottomPad: 2 },
 		attacks: [
@@ -164,6 +176,7 @@ export const ENEMY_DEFS: Record<EnemyKey, EnemyDefinition> = {
 			restMin: 1.0,
 			restMax: 2.1,
 		},
+		maxHealth: 60,
 	},
 }
 

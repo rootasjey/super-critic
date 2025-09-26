@@ -40,7 +40,7 @@ export function showDamageNumber(scene: Phaser.Scene, rawAmount: number, opts: D
   const fontSize = opts.fontSize ?? 18
   const duration = opts.duration ?? 420
   const floatDistance = opts.floatDistance ?? 26
-  const color = opts.color ?? '#ffe066'
+  const color = opts.color ?? '#134686'
   const strokeColor = opts.strokeColor ?? '#2a1212'
 
   const { x, y } = resolvePosition(opts)
@@ -59,12 +59,29 @@ export function showDamageNumber(scene: Phaser.Scene, rawAmount: number, opts: D
   text.setShadow(0, 2, 'rgba(0,0,0,0.45)', 0, true, true)
 
   if (opts.critical) {
-    text.setTint(0xff0000)
+    text.setFontSize(fontSize * 1.2)
+    text.setShadow(0, 2, 'rgba(0,0,0,0.85)', 4, true, true)
   }
 
   const scaleStart = opts.critical ? 5.00 : 3
   const scaleEnd = 1
   text.setScale(scaleStart)
+
+  // Add "CRIT!" text for critical hits
+  let critText: Phaser.GameObjects.Text | undefined
+  if (opts.critical) {
+    critText = scene.add.text(x + jitterX + 15, y - 48, 'CRIT!', {
+      fontFamily: '"Jersey 20", sans-serif',
+      fontSize: `${Math.round(fontSize * 0.7)}px`,
+      color: '#FF0066',
+    })
+    critText.setOrigin(0.5)
+    critText.setDepth(3001)
+    critText.setAlpha(0.95)
+    critText.setStroke('#E45A92', 3)
+    critText.setShadow(0, 1, 'rgba(0,0,0,0.9)', 2, true, true)
+    critText.setScale(2.5)
+  }
 
   scene.tweens.add({
     targets: text,
@@ -79,7 +96,24 @@ export function showDamageNumber(scene: Phaser.Scene, rawAmount: number, opts: D
     },
   })
 
+  // Animate the CRIT! text separately if it exists
+  if (critText) {
+    scene.tweens.add({
+      targets: critText,
+      y: y - floatDistance - 8,
+      scaleX: 0.8,
+      scaleY: 0.8,
+      alpha: 0,
+      duration: duration * 1.1,
+      ease: 'Back.easeOut',
+      onComplete: () => {
+        critText!.destroy()
+      },
+    })
+  }
+
   scene.time.delayedCall(duration + 60, () => {
     if (text.active) text.destroy()
+    if (critText && critText.active) critText.destroy()
   })
 }

@@ -52,44 +52,77 @@ export function configureCaptainSwordKnockback(overrides: Partial<KnockbackConfi
   captainSwordKnockback = { ...captainSwordKnockback, ...overrides }
 }
 
-class CaptainMeleeAttack implements AttackStrategy {
-  private state = new WeakMap<PlayerLike, {
-    cooldownUntil: number
-    hitbox?: Phaser.Physics.Arcade.Sprite
-    collider?: Phaser.Physics.Arcade.Collider
-    lastAttackAt: number
-    swordEffect?: Phaser.GameObjects.Sprite
-    comboStep: number // 1, 2, or 3 for ground attacks
-    comboWindowUntil: number // Time window to continue ground combo
-    airComboStep: number // 1 or 2 for air attacks
-    airComboWindowUntil: number // Time window to continue air combo
-    pendingDamage: number
-  }>()
+// Module-level defaults used when a player's state is first created
+let defaultCaptainCritChance = 0.75
+let defaultCaptainCritMultiplier = 2
+let defaultCaptainCritKnockbackMultiplier = 1.2
 
-  private getState(p: PlayerLike) {
+type CaptainMeleeState = {
+  cooldownUntil: number
+  hitbox?: Phaser.Physics.Arcade.Sprite
+  collider?: Phaser.Physics.Arcade.Collider
+  lastAttackAt: number
+  swordEffect?: Phaser.GameObjects.Sprite
+  comboStep: number // 1, 2, or 3 for ground attacks
+  comboWindowUntil: number // Time window to continue ground combo
+  airComboStep: number // 1 or 2 for air attacks
+  airComboWindowUntil: number // Time window to continue air combo
+  pendingDamage: number
+  pendingIsCrit: boolean
+  // Per-player crit configuration (exposed so different attacks/players can tune these)
+  critChance: number
+  critMultiplier: number
+  critKnockbackMultiplier: number
+}
+
+class CaptainMeleeAttack implements AttackStrategy {
+  private state = new WeakMap<PlayerLike, CaptainMeleeState>()
+
+  private getState(p: PlayerLike): CaptainMeleeState {
     let s = this.state.get(p)
-    if (!s) { 
-      s = { 
-        cooldownUntil: 0, 
-        lastAttackAt: 0, 
-        comboStep: 1, 
+    if (!s) {
+      s = {
+        cooldownUntil: 0,
+        lastAttackAt: 0,
+        comboStep: 1,
         comboWindowUntil: 0,
         airComboStep: 1,
         airComboWindowUntil: 0,
-        pendingDamage: 1
-      } 
-      this.state.set(p, s) 
+        pendingDamage: 1,
+        pendingIsCrit: false,
+        critChance: defaultCaptainCritChance,
+        critMultiplier: defaultCaptainCritMultiplier,
+        critKnockbackMultiplier: defaultCaptainCritKnockbackMultiplier,
+      }
+      this.state.set(p, s)
     }
     return s
   }
 
   private getDamageFor(type: 'ground' | 'air', comboStep: number) {
     if (type === 'ground') {
-      if (comboStep >= 3) return 2
-      return 1
+      if (comboStep >= 3) return 20
+      return 10
     }
-    if (comboStep >= 2) return 2
-    return 1
+    if (comboStep >= 2) return 20
+    return 10
+  }
+
+  /**
+   * Configure critical settings. If `player` is provided, update that player's state. Otherwise
+   * update the module defaults used for newly-created player states.
+   */
+  configureCritical(opts: { chance?: number; multiplier?: number; knockbackMultiplier?: number }, player?: PlayerLike) {
+    if (player) {
+      const st = this.getState(player)
+      if (typeof opts.chance === 'number') st.critChance = Math.max(0, Math.min(1, opts.chance))
+      if (typeof opts.multiplier === 'number') st.critMultiplier = Math.max(1, opts.multiplier)
+      if (typeof opts.knockbackMultiplier === 'number') st.critKnockbackMultiplier = Math.max(0, opts.knockbackMultiplier)
+    } else {
+      if (typeof opts.chance === 'number') defaultCaptainCritChance = Math.max(0, Math.min(1, opts.chance))
+      if (typeof opts.multiplier === 'number') defaultCaptainCritMultiplier = Math.max(1, opts.multiplier)
+      if (typeof opts.knockbackMultiplier === 'number') defaultCaptainCritKnockbackMultiplier = Math.max(0, opts.knockbackMultiplier)
+    }
   }
 
   preload(scene: Phaser.Scene): void {
@@ -245,6 +278,14 @@ class CaptainMeleeAttack implements AttackStrategy {
     }
 
     st.pendingDamage = this.getDamageFor(attackType, currentComboStep)
+    // Roll for critical hit and apply multiplier to pending damage if crit (use per-player config)
+    const isCrit = Math.random() < st.critChance
+    if (isCrit) {
+      st.pendingIsCrit = true
+      st.pendingDamage = Math.max(1, Math.round(st.pendingDamage * st.critMultiplier))
+    } else {
+      st.pendingIsCrit = false
+    }
     
     // Play the appropriate attack animation
     player.sprite.anims.play(animationKey, true)
@@ -283,7 +324,8 @@ class CaptainMeleeAttack implements AttackStrategy {
           const dir = playerSprite.flipX ? -1 : 1
           // Apply configured knockback and trigger hit anim
           const pendingDamage = Math.max(1, Math.round(this.getState(player).pendingDamage))
-          applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25, pendingDamage)
+          const st2 = this.getState(player)
+          applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25, pendingDamage, { critical: st2.pendingIsCrit, critKnockbackMultiplier: st2.critKnockbackMultiplier })
         })
         this.getState(player).collider = collider as any
       }

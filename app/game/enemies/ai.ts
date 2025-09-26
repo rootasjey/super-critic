@@ -31,6 +31,9 @@ export type EnemyData = {
 	definition: EnemyDefinition
 	state: EnemyState
 	facing: 1 | -1
+	maxHealth: number
+	health: number
+	dead: boolean
 	patrolSpeed: number
 	patrolRange: number
 	baseX: number
@@ -67,6 +70,7 @@ export function attachEnemyData(sprite: Phaser.Physics.Arcade.Sprite, key: Enemy
 	const { patrolSpeed, patrolRange, aggroRange, verticalAggro, restMin, restMax, canFallOff } = buildDefaultConfig(definition)
 	const attackCooldowns: Record<string, number> = {}
 	definition.attacks.forEach(att => { attackCooldowns[att.key] = 0 })
+	const maxHealth = Math.max(1, Math.round(definition.maxHealth))
 
 	const data: EnemyData = {
 		sprite,
@@ -74,6 +78,9 @@ export function attachEnemyData(sprite: Phaser.Physics.Arcade.Sprite, key: Enemy
 		definition,
 		state: 'idle',
 		facing: Math.random() > 0.5 ? 1 : -1,
+		maxHealth,
+		health: maxHealth,
+		dead: false,
 		patrolSpeed,
 		patrolRange,
 		baseX: sprite.x,
@@ -143,6 +150,56 @@ function reduceTimers(map: Record<string, number> | undefined, dt: number) {
 	}
 }
 
+function beginEnemyDeath(scene: Phaser.Scene, enemy: Phaser.Physics.Arcade.Sprite, data: EnemyData) {
+	if (data.dead) return
+	data.dead = true
+	data.health = 0
+	data.hurtTimer = 0
+	data.currentAttack = undefined
+	data.debugHitbox = undefined
+
+	const body = enemy.body as Phaser.Physics.Arcade.Body | null
+	if (body) {
+		body.setVelocity(0, 0)
+		body.setAcceleration(0, 0)
+		body.enable = false
+	}
+
+	try { enemy.clearTint() } catch {}
+
+	const deathAnimKey = animKey(data.key, 'death')
+	let removed = false
+	const destroyEnemy = () => {
+		if (removed) return
+		removed = true
+		if (!enemy.scene) return
+		try { enemy.anims.stop() } catch {}
+		try { enemy.setActive(false) } catch {}
+		try { enemy.setVisible(false) } catch {}
+		try { enemy.destroy() } catch {}
+	}
+
+	// Always ensure cleanup runs even if animation events fail to fire
+	scene.time.delayedCall(1200, destroyEnemy)
+
+	if (scene.anims.exists(deathAnimKey)) {
+		enemy.once(
+			Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + deathAnimKey,
+			() => destroyEnemy()
+		)
+		enemy.anims.play(deathAnimKey)
+		return
+	}
+
+	scene.tweens.add({
+		targets: enemy,
+		alpha: 0,
+		duration: 200,
+		ease: 'Quad.easeIn',
+		onComplete: () => destroyEnemy(),
+	})
+}
+
 function selectEnemyAttack(data: EnemyData, horizontal: number, vertical: number) {
 	const candidate = data.attacks
 		.filter(att => (data.attackCooldowns[att.key] || 0) <= 0)
@@ -201,6 +258,12 @@ export function updateEnemyAI(scene: Phaser.Scene, sprite: Phaser.Physics.Arcade
 	const body = sprite.body as Phaser.Physics.Arcade.Body
 	if (!body) return
 	const dt = scene.game.loop.delta / 1000
+
+	if (d.dead) {
+		body.setVelocity(0, 0)
+		body.setAcceleration(0, 0)
+		return
+	}
 
 	d.cooldown = Math.max(0, d.cooldown - dt)
 	d.restTimer = Math.max(0, d.restTimer - dt)
@@ -321,48 +384,88 @@ export function updateEnemyAI(scene: Phaser.Scene, sprite: Phaser.Physics.Arcade
 export type Knockback = EnemyKnockback
 
 export function applyEnemyHit(
-	scene: Phaser.Scene,
-	enemy: Phaser.Physics.Arcade.Sprite,
-	knock: Knockback,
-	dir: 1 | -1,
-	stagger = 0.3,
-	damage = 1,
+		scene: Phaser.Scene,
+		enemy: Phaser.Physics.Arcade.Sprite,
+		knock: Knockback,
+		dir: 1 | -1,
+		stagger = 0.3,
+		damage = 1,
+		options?: { critical?: boolean; critKnockbackMultiplier?: number }
 ) {
 	const data = getEnemyData(enemy)
+	if (data?.dead) return
 	const body = enemy.body as Phaser.Physics.Arcade.Body | null
 	if (!body) return
+
+	const rawDamage = Number.isFinite(damage) ? Math.max(0, Math.round(damage)) : 0
+	let dealtDamage = rawDamage
+	let lethal = false
+
+	if (data) {
+		const prevHealth = data.health
+		const nextHealth = Math.max(0, prevHealth - rawDamage)
+		if (nextHealth !== prevHealth) {
+			data.health = nextHealth
+			dealtDamage = Math.max(0, prevHealth - nextHealth)
+			lethal = nextHealth <= 0
+		} else {
+			dealtDamage = 0
+		}
+	}
 	try {
-		enemy.setTintFill(0xff4444)
-		scene.time.delayedCall(80, () => enemy.clearTint())
+		if (options?.critical) {
+			// Stronger tint for critical hits
+			enemy.setTintFill(0xffcc66)
+			scene.time.delayedCall(140, () => enemy.clearTint())
+		} else if (dealtDamage > 0) {
+			enemy.setTintFill(0xff4444)
+			scene.time.delayedCall(80, () => enemy.clearTint())
+		}
 	} catch {}
 
-	const key: EnemyKey | undefined = (data?.key || undefined) as any
-	if (key) {
-		const hitAnimKey = animKey(key, 'hit')
-		if (scene.anims.exists(hitAnimKey)) {
-			try { enemy.anims.play(hitAnimKey, true) } catch {}
+	if (lethal) {
+		if (data) beginEnemyDeath(scene, enemy, data)
+	} else {
+		const key: EnemyKey | undefined = (data?.key || undefined) as any
+		if (key) {
+			const hitAnimKey = animKey(key, 'hit')
+			if (scene.anims.exists(hitAnimKey)) {
+				try { enemy.anims.play(hitAnimKey, true) } catch {}
+			}
+		}
+		const critMul = options?.critical && typeof options.critKnockbackMultiplier === 'number' ? options.critKnockbackMultiplier : 1
+		try {
+			body.setVelocityX((knock.x || 0) * dir * critMul)
+			if (typeof knock.y === 'number') body.setVelocityY(knock.y * critMul)
+		} catch {}
+		if (data && dealtDamage > 0) {
+			data.hurtTimer = Math.max(stagger, 0)
+			data.cooldown = Math.max(data.cooldown, 0.5)
 		}
 	}
 
-	try {
-		body.setVelocityX((knock.x || 0) * dir)
-		if (typeof knock.y === 'number') body.setVelocityY(knock.y)
-	} catch {}
+	if (dealtDamage <= 0) return
 
-	if (data) {
-		data.hurtTimer = Math.max(stagger, 0)
-		data.cooldown = Math.max(data.cooldown, 0.5)
-	}
-
-	if (damage > 0) {
-		const offsetY = -((enemy.displayHeight || 32) * 0.6)
-		showDamageNumber(scene, damage, {
+	const offsetY = -((enemy.displayHeight || 32) * 0.6)
+	if (options?.critical) {
+		showDamageNumber(scene, dealtDamage, {
 			sprite: enemy,
 			offsetY,
-			color: '#ffe066',
-			strokeColor: '#2a1212',
-			floatDistance: 30,
-			fontSize: 18,
+			color: '#8F87F1',
+			strokeColor: '#C68EFD',
+			floatDistance: 40,
+			fontSize: 22,
+			critical: true,
 		})
+		return
 	}
+
+	showDamageNumber(scene, dealtDamage, {
+		sprite: enemy,
+		offsetY,
+		color: '#0BA6DF',
+		strokeColor: '#EBEBEB',
+		floatDistance: 30,
+		fontSize: 18,
+	})
 }

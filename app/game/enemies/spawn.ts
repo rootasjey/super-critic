@@ -52,12 +52,18 @@ function applyOptionalOverrides(obj: any, data: ReturnType<typeof attachEnemyDat
 		const pVert = findProp('verticalAggro', 'vertical_aggro', 'vertical-aggro', 'verticalaggro', 'aggroVertical')
 		const pPatrolRange = findProp('patrolRange', 'patrol_range', 'patrol-range', 'patrolrange')
 		const pPatrolSpeed = findProp('patrolSpeed', 'patrol_speed', 'patrol-speed', 'patrolspeed')
+		const pHealth = findProp('maxHealth', 'health', 'hp')
 
 		const b = boolVal(pFall); if (typeof b === 'boolean') data.canFallOff = b
 		const a = numVal(pAggro); if (typeof a === 'number') data.aggroRange = a
 		const v = numVal(pVert); if (typeof v === 'number') data.verticalAggro = v
 		const pr = numVal(pPatrolRange); if (typeof pr === 'number') data.patrolRange = pr
 		const ps = numVal(pPatrolSpeed); if (typeof ps === 'number') data.patrolSpeed = ps
+		const mh = numVal(pHealth); if (typeof mh === 'number') {
+			const max = Math.max(1, Math.round(mh))
+			data.maxHealth = max
+			data.health = max
+		}
 	} catch {}
 }
 

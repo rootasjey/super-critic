@@ -77,6 +77,9 @@ export class HealthBarHUD {
   private heartBaseScale = 1
   private textBaseScale = 1
   private resetTimer?: Phaser.Time.TimerEvent
+  private camera?: Phaser.Cameras.Scene2D.Camera
+  private cameraOffset = { x: 0, y: 0 }
+  private cameraBound = false
 
   private config = {
     x: 56,
@@ -127,6 +130,7 @@ export class HealthBarHUD {
     const heart = this.scene.add.image(0, 0, 'heart').setOrigin(0, 0)
     const heartScale = this.config.heartHeight / heart.height
     heart.setScale(heartScale)
+    heart.setScrollFactor(0, 0)
     this.heartBaseScale = heartScale
     container.add(heart)
     this.heartImage = heart
@@ -158,7 +162,9 @@ export class HealthBarHUD {
     this.textBaseScale = 1
 
     container.setScale(this.config.scale)
+    container.setScrollFactor(0, 0)
     this.resetVisualState()
+    this.syncToCamera()
   }
 
   updateValues(current: number, max: number) {
@@ -184,14 +190,20 @@ export class HealthBarHUD {
   setHudScale(scale: number) {
     if (!this.container) return
     this.config.scale = scale
-    this.container.setScale(scale)
+    if (this.camera) this.syncToCamera()
+    else this.container.setScale(scale)
   }
 
   setHudPosition(x: number, y: number) {
     if (!this.container) return
     this.config.x = x
     this.config.y = y
-    this.container.setPosition(x, y)
+    if (this.camera) {
+      this.cameraOffset = { x, y }
+      this.syncToCamera()
+    } else {
+      this.container.setPosition(x, y)
+    }
   }
 
   private formatLabel() {
@@ -277,6 +289,41 @@ export class HealthBarHUD {
     this.resetTimer = undefined
     if (this.healthText) this.scene.tweens.killTweensOf(this.healthText)
     if (this.heartImage) this.scene.tweens.killTweensOf(this.heartImage)
+  }
+
+  attachToCamera(camera: Phaser.Cameras.Scene2D.Camera, offset: { x: number; y: number } = { x: this.config.x, y: this.config.y }) {
+    this.camera = camera
+    this.cameraOffset = { x: offset.x, y: offset.y }
+    if (!this.cameraBound) {
+      this.cameraBound = true
+      this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, this.syncToCamera, this)
+      this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.detachFromCamera, this)
+      this.scene.events.once(Phaser.Scenes.Events.DESTROY, this.detachFromCamera, this)
+    }
+    this.syncToCamera()
+  }
+
+  detachFromCamera() {
+    if (!this.cameraBound) return
+    this.scene.events.off(Phaser.Scenes.Events.POST_UPDATE, this.syncToCamera, this)
+    this.cameraBound = false
+    this.camera = undefined
+  }
+
+  private syncToCamera() {
+    if (!this.container) return
+    if (!this.camera) {
+      this.container.setPosition(this.config.x, this.config.y)
+      this.container.setScale(this.config.scale)
+      return
+    }
+
+    const cam = this.camera
+    const zoom = cam.zoom || 1
+    const posX = cam.worldView.left + (this.cameraOffset.x / zoom)
+    const posY = cam.worldView.top + (this.cameraOffset.y / zoom)
+    this.container.setPosition(posX, posY)
+    this.container.setScale(this.config.scale / zoom)
   }
 }
 

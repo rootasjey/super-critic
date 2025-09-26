@@ -12,7 +12,7 @@ import { placeEnemies } from '~/game/enemies/spawn'
 import { updateEnemyAI, getEnemyData } from '~/game/enemies/ai'
 import { spawnPlayerFromLayer } from '~/game/systems/player'
 import { ensureAttackAnimationsForSkin, preloadAttackAssetsForSkin } from '~/game/systems/attack'
-import { fitCameraToMap } from '~/game/systems/camera'
+import { fitCameraToMap, startCameraFollow } from '~/game/systems/camera'
 import { setupPlayerDebug } from '~/game/systems/debug'
 import { onSceneTeardown, teardownSceneDefaults } from '~/game/systems/lifecycle'
 import { embeddedMapCacheKey, rawMapCacheKey, getSelectedMap } from '~/game/config/maps'
@@ -95,6 +95,7 @@ export class StageScene extends Phaser.Scene {
     onSceneTeardown(this, () => { try { solids.clear(true, true) } catch {} })
 
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+    fitCameraToMap(this, map)
 
     // One-way platforms
     const oneWays = buildOneWayPlatforms(this, map)
@@ -111,6 +112,7 @@ export class StageScene extends Phaser.Scene {
         // HUD
         this.healthHUD = new HealthBarHUD(this)
         this.healthHUD.create(health.max, health.current)
+        this.healthHUD.attachToCamera(this.cameras.main)
         health.emitter.on('health-changed', (cur, max) => {
           this.healthHUD?.updateValues(cur, max)
         })
@@ -118,7 +120,6 @@ export class StageScene extends Phaser.Scene {
           // simple effect: flash camera
           this.cameras.main.flash(250, 255, 0, 0)
         })
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
         const dbg = setupPlayerDebug(this, this.player)
         this.debugGfx = dbg.gfx
         this.platformsDebugGfx = dbg.platformsGfx
@@ -133,6 +134,13 @@ export class StageScene extends Phaser.Scene {
         // Ensure debug teardown when scene shuts down or is destroyed
         this.events.once('shutdown', () => { this.teardownDebug(); teardownSceneDefaults(this) })
         this.events.once('destroy', () => { this.teardownDebug(); teardownSceneDefaults(this) })
+
+        if (this.player?.sprite) {
+          startCameraFollow(this, this.player.sprite, {
+            lerp: { x: 0.12, y: 0.18 },
+            deadzone: { fractionX: 0.42, fractionY: 0.5 },
+          })
+        }
       }
     }
 
@@ -178,9 +186,6 @@ export class StageScene extends Phaser.Scene {
 
     // Ensure attack animations ready (after animations manager init)
     ensureAttackAnimationsForSkin(this, getSelectedSkin())
-
-    // center and fit camera
-    fitCameraToMap(this, map)
   }
 
   override update() {

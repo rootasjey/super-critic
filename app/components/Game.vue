@@ -12,18 +12,16 @@ import { StageScene } from '~/game/scenes/StageScene'
 import GameDebug from '~/components/GameDebug.vue'
 import { useDebugStore } from '@/stores/debug'
 
+const BASE_WIDTH = 1280
+const BASE_HEIGHT = 720
+
 const container = ref<HTMLElement | null>(null)
 let game: Phaser.Game | null = null
-let resizeHandler: (() => void) | null = null
 const debugStore = useDebugStore()
 
 const { on, off, emit } = useEventBus()
 
 function createPhaserGame(parent: HTMLElement) {
-  // initial size: fill parent/container (fallback to window)
-  const w = Math.max(200, Math.floor(parent.clientWidth || window.innerWidth))
-  const h = Math.max(150, Math.floor(parent.clientHeight || window.innerHeight))
-
   const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent,
@@ -37,10 +35,14 @@ function createPhaserGame(parent: HTMLElement) {
       }
     },
     scale: {
-      mode: Phaser.Scale.RESIZE,
-      width: w,
-      height: h,
+      mode: Phaser.Scale.FIT,
+      width: BASE_WIDTH,
+      height: BASE_HEIGHT,
       autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
+    render: {
+      pixelArt: true,
+      antialias: false,
     },
   }
 
@@ -51,29 +53,11 @@ function onStart() {
   if (!game && container.value) {
     game = createPhaserGame(container.value)
 
-    resizeHandler = () => {
-      if (game && container.value) {
-        const w = Math.max(200, Math.floor(container.value.clientWidth || window.innerWidth))
-        const h = Math.max(150, Math.floor(container.value.clientHeight || window.innerHeight))
-        game.scale.resize(w, h)
-        const scene = game.scene.getScenes().find((s: any) => s instanceof StageScene) as any
-        if (scene && scene.cameras && scene.map) {
-          const map = scene.map
-          const cam = scene.cameras.main
-          const fitZoom = Math.min(w / map.widthInPixels, h / map.heightInPixels)
-          cam.setZoom(fitZoom)
-          cam.centerOn(map.widthInPixels / 2, map.heightInPixels / 2)
-        }
-      }
-    }
-
     // Set StageScene instance on the debug store for debug tools to attach
     try {
       const scene = game.scene.getScenes().find((s: any) => s instanceof StageScene) as any
       if (scene) debugStore.phaserScene = scene
     } catch {}
-    window.addEventListener('resize', resizeHandler)
-    resizeHandler()
   }
 }
 
@@ -126,10 +110,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   off('vue:start', onStart)
   off('vue:stop', onStop)
-  if (resizeHandler) {
-    window.removeEventListener('resize', resizeHandler)
-    resizeHandler = null
-  }
   onStop()
 })
 </script>
@@ -140,5 +120,6 @@ onBeforeUnmount(() => {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: #080808;
 }
 </style>
