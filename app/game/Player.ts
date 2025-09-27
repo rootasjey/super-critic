@@ -324,10 +324,15 @@ export class Player {
     if (Phaser.Input.Keyboard.JustDown(this.keyX)) {
       this.attackPressedAt = now
       // Always try to start attack - let the attack system handle combo logic
-      const started = this.attack.tryStart(this as any)
+      const started = this.attack.tryStart(this)
       if (started) {
-        this.armed = true
-        this.armedUntil = Math.max(this.armedUntil, now + 10000)
+        const shouldArm = typeof this.attack.shouldArmPlayer === 'function'
+          ? this.attack.shouldArmPlayer(this)
+          : true
+        if (shouldArm) {
+          this.armed = true
+          this.armedUntil = Math.max(this.armedUntil, now + 10000)
+        }
       }
     }
     // armed timeout

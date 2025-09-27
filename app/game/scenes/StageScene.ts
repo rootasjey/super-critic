@@ -40,6 +40,7 @@ export class StageScene extends Phaser.Scene {
   platformsDebugGfx!: Phaser.GameObjects.Graphics
   private debugCleanup?: () => void
   enemiesGroup?: Phaser.Physics.Arcade.Group
+  solidsGroup?: Phaser.Physics.Arcade.StaticGroup
   private healthHUD?: HealthBarHUD
 
   private debugStore = useDebugStore()
@@ -92,7 +93,11 @@ export class StageScene extends Phaser.Scene {
     map.createLayer('platforms', tilesets, 0, 0)
 
     const solids = buildCollisionSolids(this, map, raw)
-    onSceneTeardown(this, () => { try { solids.clear(true, true) } catch {} })
+    this.solidsGroup = solids
+    onSceneTeardown(this, () => {
+      try { solids.clear(true, true) } catch {}
+      this.solidsGroup = undefined
+    })
 
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     fitCameraToMap(this, map)
