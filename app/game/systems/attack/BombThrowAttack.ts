@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import { applyEnemyHit } from '~/game/enemies/ai'
 import type { StageScene } from '~/game/scenes/StageScene'
-import type { AttackStrategy, PlayerLike } from './types'
+import type { AttackOverrideConfig, AttackOverrideContext, AttackStrategy, PlayerLike } from './types'
 
 const BOMB_MAX_CHARGE_MS = 1200
 const BOMB_MIN_THROW_SPEED = 200
@@ -16,6 +16,28 @@ const BOMB_RADIUS_MIN = 88
 const BOMB_RADIUS_MAX = 140
 const BOMB_DAMAGE_MIN = 12
 const BOMB_DAMAGE_MAX = 26
+
+type BombConfig = {
+  cooldownMs: number
+  postExplosionCooldownMs: number
+  fuseBase: number
+  fuseMin: number
+  radiusMin: number
+  radiusMax: number
+  damageMin: number
+  damageMax: number
+}
+
+const DEFAULT_BOMB_CONFIG: BombConfig = {
+  cooldownMs: BOMB_BASE_COOLDOWN,
+  postExplosionCooldownMs: BOMB_POST_EXPLOSION_COOLDOWN,
+  fuseBase: BOMB_FUSE_BASE,
+  fuseMin: BOMB_FUSE_MIN,
+  radiusMin: BOMB_RADIUS_MIN,
+  radiusMax: BOMB_RADIUS_MAX,
+  damageMin: BOMB_DAMAGE_MIN,
+  damageMax: BOMB_DAMAGE_MAX,
+}
 
 const BOMB_CHARGE_FRAME_KEYS = Array.from({ length: 11 }, (_, i) => `bomb_bar_charge_${i + 1}`)
 const BOMB_FULL_FRAME_KEYS = Array.from({ length: 3 }, (_, i) => `bomb_bar_full_${i + 1}`)
@@ -39,6 +61,7 @@ type BombData = {
 
 export class BombThrowAttack implements AttackStrategy {
   private state = new WeakMap<PlayerLike, BombAttackState>()
+  private config: BombConfig = { ...DEFAULT_BOMB_CONFIG }
 
   shouldArmPlayer(): boolean {
     return false
@@ -191,7 +214,7 @@ export class BombThrowAttack implements AttackStrategy {
     if (!sprite) return
     st.charging = false
     const now = scene.time.now
-    st.cooldownUntil = now + BOMB_BASE_COOLDOWN
+    st.cooldownUntil = now + this.config.cooldownMs
 
     const bar = st.bar
     if (bar) {
@@ -243,7 +266,11 @@ export class BombThrowAttack implements AttackStrategy {
     }
 
     bombData.fuseEvent = scene.time.delayedCall(
-      Phaser.Math.Clamp(Phaser.Math.Linear(BOMB_FUSE_MIN, BOMB_FUSE_BASE, 1 - ratio), BOMB_FUSE_MIN, BOMB_FUSE_BASE),
+      Phaser.Math.Clamp(
+        Phaser.Math.Linear(this.config.fuseMin, this.config.fuseBase, 1 - ratio),
+        this.config.fuseMin,
+        this.config.fuseBase
+      ),
       () => this.triggerExplosion(player, bombData)
     )
 
@@ -295,15 +322,15 @@ export class BombThrowAttack implements AttackStrategy {
     })
 
     st.bombs.delete(bombData)
-    st.cooldownUntil = Math.max(st.cooldownUntil, scene.time.now + BOMB_POST_EXPLOSION_COOLDOWN)
+    st.cooldownUntil = Math.max(st.cooldownUntil, scene.time.now + this.config.postExplosionCooldownMs)
   }
 
   private applyExplosionDamage(scene: Phaser.Scene, x: number, y: number, ratio: number) {
     const stage = scene as StageScene
     const enemies: Phaser.Physics.Arcade.Group | undefined = (stage as any).enemiesGroup
     if (!enemies) return
-    const radius = Phaser.Math.Linear(BOMB_RADIUS_MIN, BOMB_RADIUS_MAX, ratio)
-    const damage = Math.round(Phaser.Math.Linear(BOMB_DAMAGE_MIN, BOMB_DAMAGE_MAX, ratio))
+    const radius = Phaser.Math.Linear(this.config.radiusMin, this.config.radiusMax, ratio)
+    const damage = Math.round(Phaser.Math.Linear(this.config.damageMin, this.config.damageMax, ratio))
     const knockX = Phaser.Math.Linear(220, 340, ratio)
     const knockY = Phaser.Math.Linear(-180, -260, ratio)
 
@@ -320,5 +347,45 @@ export class BombThrowAttack implements AttackStrategy {
       }
       return true
     })
+  }
+
+  resetSkinOverrides(_context?: AttackOverrideContext): void {
+    this.config = { ...DEFAULT_BOMB_CONFIG }
+  }
+
+  applySkinOverrides(overrides: AttackOverrideConfig, _context?: AttackOverrideContext): void {
+    const bomb = overrides.bomb
+    if (!bomb) return
+
+    if (typeof bomb.cooldownMs === 'number' && Number.isFinite(bomb.cooldownMs)) {
+      this.config.cooldownMs = Math.max(0, bomb.cooldownMs)
+    }
+    if (typeof bomb.postExplosionCooldownMs === 'number' && Number.isFinite(bomb.postExplosionCooldownMs)) {
+      this.config.postExplosionCooldownMs = Math.max(0, bomb.postExplosionCooldownMs)
+    }
+    if (bomb.fuse) {
+      if (typeof bomb.fuse.base === 'number' && Number.isFinite(bomb.fuse.base)) {
+        this.config.fuseBase = Math.max(0, bomb.fuse.base)
+      }
+      if (typeof bomb.fuse.min === 'number' && Number.isFinite(bomb.fuse.min)) {
+        this.config.fuseMin = Math.max(0, Math.min(this.config.fuseBase, bomb.fuse.min))
+      }
+    }
+    if (bomb.radius) {
+      if (typeof bomb.radius.min === 'number' && Number.isFinite(bomb.radius.min)) {
+        this.config.radiusMin = Math.max(0, bomb.radius.min)
+      }
+      if (typeof bomb.radius.max === 'number' && Number.isFinite(bomb.radius.max)) {
+        this.config.radiusMax = Math.max(this.config.radiusMin, bomb.radius.max)
+      }
+    }
+    if (bomb.damage) {
+      if (typeof bomb.damage.min === 'number' && Number.isFinite(bomb.damage.min)) {
+        this.config.damageMin = Math.max(0, bomb.damage.min)
+      }
+      if (typeof bomb.damage.max === 'number' && Number.isFinite(bomb.damage.max)) {
+        this.config.damageMax = Math.max(this.config.damageMin, bomb.damage.max)
+      }
+    }
   }
 }

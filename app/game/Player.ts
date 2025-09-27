@@ -117,33 +117,35 @@ export class Player {
   }
 
   static createAnimations(scene: Phaser.Scene, skin: PlayerSkin = CaptainClownSkin) {
-    if (!scene.anims.exists('player_idle')) {
-      scene.anims.create({
-        key: 'player_idle',
-        frames: Array.from({ length: skin.idleCount }, (_, i) => ({ key: `player_idle_${i + 1}` })),
-        frameRate: skin.idleRate,
-        repeat: -1
-      })
+    const baseKeys = ['player_idle', 'player_walk', 'player_jump', 'player_fall', 'player_land', 'player_hit', 'player_dead_hit', 'player_dead_ground']
+    for (const key of baseKeys) {
+      if (scene.anims.exists(key)) scene.anims.remove(key)
     }
-    if (!scene.anims.exists('player_walk')) {
-      scene.anims.create({
-        key: 'player_walk',
-        frames: Array.from({ length: skin.runCount }, (_, i) => ({ key: `player_run_${i + 1}` })),
-        frameRate: skin.runRate,
-        repeat: -1
-      })
-    }
+
+    scene.anims.create({
+      key: 'player_idle',
+      frames: Array.from({ length: skin.idleCount }, (_, i) => ({ key: `player_idle_${i + 1}` })),
+      frameRate: skin.idleRate,
+      repeat: -1,
+    })
+    scene.anims.create({
+      key: 'player_walk',
+      frames: Array.from({ length: skin.runCount }, (_, i) => ({ key: `player_run_${i + 1}` })),
+      frameRate: skin.runRate,
+      repeat: -1,
+    })
+
     const addAnim = (key: string, count?: number, rate?: number, repeat: number | boolean = 0) => {
       if (!count || count <= 0) return
-      const fullKey = `player_${key}`
-      if (scene.anims.exists(fullKey)) return
+      const frames = Array.from({ length: count }, (_, i) => ({ key: `player_${key}_${i + 1}` }))
       scene.anims.create({
-        key: fullKey,
-        frames: Array.from({ length: count }, (_, i) => ({ key: `player_${key}_${i + 1}` })),
+        key: `player_${key}`,
+        frames,
         frameRate: rate ?? 10,
-        repeat: repeat === -1 ? -1 : repeat ? -1 : 0
+        repeat: repeat === -1 ? -1 : repeat ? -1 : 0,
       })
     }
+
     addAnim('jump', skin.jumpCount, skin.jumpRate, 0)
     addAnim('fall', skin.fallCount, skin.fallRate, -1)
     addAnim('land', skin.landCount, skin.landRate, 0)
@@ -157,30 +159,15 @@ export class Player {
     this.sprite = sprite
     sprite.setCollideWorldBounds(true)
     sprite.setBounce(0.05)
-    // Set origin (default center) and scale to desired display height
-    sprite.setOrigin(this.origin.x, this.origin.y)
-    const baseW = sprite.frame.width
-    const baseH = sprite.frame.height
-    const scale = (this.desiredDisplayHeight && baseH > 0)
-      ? (this.desiredDisplayHeight / baseH)
-      : 1
-    this.baseW = baseW
-    this.baseH = baseH
-    this.scaleFactor = scale
-    if (scale !== 1) sprite.setScale(scale)
+    this.applySkin(this.skin, {
+      desiredDisplayHeight: this.desiredDisplayHeight,
+      origin: this.origin,
+      body: this.bodyCfg,
+    })
 
     const body = sprite.body as Phaser.Physics.Arcade.Body
     body.setMaxVelocity(this.maxSpeed, 1000)
     body.setDrag(this.drag, 0)
-
-    // Tighten physics body to ignore horizontal transparent margins.
-    // Note: Arcade body sizes are set in source-frame pixels (pre-scale).
-    const bwSrc = this.bodyCfg?.width ?? Math.round(baseW * 0.3)
-    const bhSrc = this.bodyCfg?.height ?? Math.round(baseH * 0.93)
-    const offXSrc = this.bodyCfg?.offsetX ?? Math.round((baseW - bwSrc) / 2)
-    const offYSrc = this.bodyCfg?.offsetY ?? Math.round(baseH - bhSrc)
-    this.bodySrc = { width: bwSrc, height: bhSrc, offsetX: offXSrc, offsetY: offYSrc }
-    this.applyBodyFromSrc()
 
     // input
     this.cursors = this.scene.input.keyboard!.createCursorKeys()
@@ -215,6 +202,55 @@ export class Player {
     this.resetAirJumps()
     this.jumpReleased = true
     return sprite
+  }
+
+  applySkin(
+    skin: PlayerSkin,
+    overrides: Partial<Pick<PlayerOptions, 'desiredDisplayHeight' | 'origin' | 'body'>> = {}
+  ) {
+    this.skin = skin
+    this.desiredDisplayHeight = overrides.desiredDisplayHeight ?? skin.desiredDisplayHeight
+    this.origin = overrides.origin ?? skin.origin
+    const mergedBody = { ...skin.body, ...(overrides.body ?? {}) }
+    this.bodyCfg = mergedBody
+
+    if (this.sprite) {
+      const sprite = this.sprite
+      const wasVisible = sprite.visible
+      const wasFlipX = sprite.flipX
+      sprite.setOrigin(this.origin.x, this.origin.y)
+      sprite.setVisible(false)
+      sprite.setTexture('player_idle_1')
+      sprite.setScale(1)
+      const baseW = sprite.frame.width || this.baseW || 1
+      const baseH = sprite.frame.height || this.baseH || 1
+      this.baseW = baseW
+      this.baseH = baseH
+      const scale = (this.desiredDisplayHeight && baseH > 0)
+        ? (this.desiredDisplayHeight / baseH)
+        : 1
+      this.scaleFactor = scale
+      sprite.setScale(scale)
+
+      const bwSrc = mergedBody.width ?? Math.round(baseW * 0.3)
+      const bhSrc = mergedBody.height ?? Math.round(baseH * 0.93)
+      const offXSrc = mergedBody.offsetX ?? Math.round((baseW - bwSrc) / 2)
+      const offYSrc = mergedBody.offsetY ?? Math.round(baseH - bhSrc)
+      this.bodySrc = { width: bwSrc, height: bhSrc, offsetX: offXSrc, offsetY: offYSrc }
+      this.applyBodyFromSrc()
+
+      sprite.setFlipX(wasFlipX)
+      sprite.setVisible(wasVisible)
+      if (wasVisible && this.scene.anims.exists('player_idle')) {
+        sprite.play('player_idle')
+      }
+    }
+
+    this.attack = getAttackStrategyForSkin(this.skin)
+    this.armed = false
+    this.armedUntil = 0
+    this.attackPressedAt = 0
+    this.resetAirJumps()
   }
 
   private resetAirJumps() {

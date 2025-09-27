@@ -1,9 +1,6 @@
 import Phaser from 'phaser'
 import { Player, type PlayerOptions } from '~/game/Player'
-import type { PlayerSkin } from '~/game/skins/PlayerSkin'
-import { BombGuySkin } from '~/game/skins/BombGuy'
-import { CaptainClownSkin } from '~/game/skins/CaptainClown'
-import { CaptainClownSwordSkin } from '~/game/skins/CaptainClownSword'
+import { getPlayerSkinTextureKeys, resolvePlayerSkinDefinition, resolvePlayerSkinFromQuery, type PlayerSkinDefinition } from '~/game/skins'
 import { ASSETS } from '~/game/config/assets'
 import { embedTilesets } from '~/game/systems/tileset'
 import { buildCollisionSolids, buildOneWayPlatforms, placeDecorations } from '~/game/systems/objects'
@@ -11,25 +8,14 @@ import { preloadEnemyIdleFrames, ensureEnemyIdleAnims, preloadEnemyRunAttackFram
 import { placeEnemies } from '~/game/enemies/spawn'
 import { updateEnemyAI, getEnemyData } from '~/game/enemies/ai'
 import { spawnPlayerFromLayer } from '~/game/systems/player'
-import { ensureAttackAnimationsForSkin, preloadAttackAssetsForSkin } from '~/game/systems/attack'
+import { ensureAttackAnimationsForSkin, getAttackOverridesForSkin, getAttackStrategyForSkin, preloadAttackAssetsForSkin, setAttackOverridesForSkin } from '~/game/systems/attack'
+import type { AttackOverrideConfig } from '~/game/systems/attack'
 import { fitCameraToMap, startCameraFollow } from '~/game/systems/camera'
 import { setupPlayerDebug } from '~/game/systems/debug'
 import { onSceneTeardown, teardownSceneDefaults } from '~/game/systems/lifecycle'
 import { embeddedMapCacheKey, rawMapCacheKey, getSelectedMap } from '~/game/config/maps'
 import { useDebugStore } from '@/stores/debug'
 import { attachHealthToPlayer, HealthBarHUD } from '~/game/systems/health'
-
-export function getSelectedSkin(): PlayerSkin {
-  try {
-    const params = new URLSearchParams(window.location.search)
-    const v = (params.get('skin') || '').toLowerCase()
-    if (v === 'bomb' || v === 'bomb-guy' || v === 'bombguy') return BombGuySkin
-    if (v === 'captain-sword' || v === 'captain-clown-sword') return CaptainClownSwordSkin
-    return CaptainClownSkin
-  } catch {
-    return CaptainClownSkin
-  }
-}
 
 export class StageScene extends Phaser.Scene {
   player!: Player
@@ -42,6 +28,7 @@ export class StageScene extends Phaser.Scene {
   enemiesGroup?: Phaser.Physics.Arcade.Group
   solidsGroup?: Phaser.Physics.Arcade.StaticGroup
   private healthHUD?: HealthBarHUD
+  private currentSkinDef: PlayerSkinDefinition = resolvePlayerSkinDefinition()
 
   private debugStore = useDebugStore()
 
@@ -60,7 +47,12 @@ export class StageScene extends Phaser.Scene {
     }
 
     // Player assets
-    const skin = getSelectedSkin()
+    this.currentSkinDef = resolvePlayerSkinFromQuery()
+    const skin = this.currentSkinDef.skin
+    if (this.currentSkinDef.defaultOverrides && !getAttackOverridesForSkin(skin)) {
+      setAttackOverridesForSkin(skin, this.currentSkinDef.defaultOverrides)
+    }
+  
     Player.preload(this, skin)
     // Attack assets for selected skin
     preloadAttackAssetsForSkin(this, skin)
@@ -71,7 +63,6 @@ export class StageScene extends Phaser.Scene {
   }
 
   create() {
-    const debugStore = this.debugStore
     // Build embedded map JSON (resolve external tilesets)
     const mapKey = getSelectedMap()
     const rawKey = rawMapCacheKey(mapKey)
@@ -106,150 +97,7 @@ export class StageScene extends Phaser.Scene {
     const oneWays = buildOneWayPlatforms(this, map)
     onSceneTeardown(this, () => { try { oneWays.clear(true, true) } catch {} })
 
-    // Player spawn
-    {
-      const skin = getSelectedSkin()
-      // Extract health from Tiled map custom property if present
-      let playerHealth = 6 // default
-      const playerOptions: PlayerOptions = {}
-      const playerLayer = map.getObjectLayer('player')
-      if (playerLayer && playerLayer.objects && playerLayer.objects.length > 0) {
-        const playerObj = playerLayer.objects.find(o => (o.name || '').toLowerCase() === 'player') || playerLayer.objects[0]
-        if (playerObj && Array.isArray(playerObj.properties)) {
-          const props = playerObj.properties as Array<{ name: string; value: unknown }>
-          const getProp = (name: string) => props.find(p => p.name === name)
-          const getNumber = (name: string) => {
-            const prop = getProp(name)
-            if (!prop) return undefined
-            if (typeof prop.value === 'number') return prop.value
-            if (typeof prop.value === 'string') {
-              const parsed = Number(prop.value)
-              return Number.isFinite(parsed) ? parsed : undefined
-            }
-            return undefined
-          }
-          const getBoolean = (name: string) => {
-            const prop = getProp(name)
-            if (!prop) return undefined
-            const value = prop.value
-            if (typeof value === 'boolean') return value
-            if (typeof value === 'number') return value !== 0
-            if (typeof value === 'string') {
-              const lower = value.trim().toLowerCase()
-              if (lower === 'true' || lower === 'yes' || lower === 'on') return true
-              if (lower === 'false' || lower === 'no' || lower === 'off') return false
-            }
-            return undefined
-          }
-
-          const healthProp = getNumber('health')
-          if (typeof healthProp === 'number') playerHealth = healthProp
-
-          const extraJumps = getNumber('extraJumps')
-          if (typeof extraJumps === 'number') playerOptions.extraJumps = extraJumps
-          const doubleJumpFlag = getBoolean('doubleJump')
-          if (doubleJumpFlag !== undefined) {
-            playerOptions.extraJumps = doubleJumpFlag
-              ? (playerOptions.extraJumps ?? 1)
-              : 0
-          }
-
-          const wallJumpFlag = getBoolean('wallJump') ?? getBoolean('wallJumpEnabled')
-          if (wallJumpFlag !== undefined) playerOptions.wallJumpEnabled = wallJumpFlag
-          const wallJumpH = getNumber('wallJumpHorizontalSpeed')
-          if (typeof wallJumpH === 'number') playerOptions.wallJumpHorizontalSpeed = wallJumpH
-          const wallJumpV = getNumber('wallJumpVerticalSpeed')
-          if (typeof wallJumpV === 'number') playerOptions.wallJumpVerticalSpeed = wallJumpV
-          const wallGrace = getNumber('wallJumpGraceTime')
-          if (typeof wallGrace === 'number') playerOptions.wallJumpGraceTime = wallGrace
-          const wallSlideSpeed = getNumber('wallSlideSpeed')
-          if (typeof wallSlideSpeed === 'number') playerOptions.wallSlideSpeed = wallSlideSpeed
-        }
-      }
-      try {
-        const params = new URLSearchParams(window.location.search)
-        if (params.has('doubleJump')) {
-          const value = params.get('doubleJump') || ''
-          if (value === '' || value.toLowerCase() === 'true' || value === '1') {
-            playerOptions.extraJumps = playerOptions.extraJumps ?? 1
-          } else if (value.toLowerCase() === 'false' || value === '0') {
-            playerOptions.extraJumps = 0
-          } else {
-            const parsed = Number(value)
-            if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
-          }
-        }
-        if (params.has('extraJumps')) {
-          const parsed = Number(params.get('extraJumps'))
-          if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
-        }
-        if (params.has('wallJump')) {
-          const value = (params.get('wallJump') || '').toLowerCase()
-          if (value === '' || value === 'true' || value === '1' || value === 'on') {
-            playerOptions.wallJumpEnabled = true
-          } else if (value === 'false' || value === '0' || value === 'off') {
-            playerOptions.wallJumpEnabled = false
-          }
-        }
-        if (params.has('wallJumpH')) {
-          const parsed = Number(params.get('wallJumpH'))
-          if (Number.isFinite(parsed)) playerOptions.wallJumpHorizontalSpeed = parsed
-        }
-        if (params.has('wallJumpV')) {
-          const parsed = Number(params.get('wallJumpV'))
-          if (Number.isFinite(parsed)) playerOptions.wallJumpVerticalSpeed = parsed
-        }
-        if (params.has('wallGrace')) {
-          const parsed = Number(params.get('wallGrace'))
-          if (Number.isFinite(parsed)) playerOptions.wallJumpGraceTime = parsed
-        }
-        if (params.has('wallSlide')) {
-          const parsed = Number(params.get('wallSlide'))
-          if (Number.isFinite(parsed)) playerOptions.wallSlideSpeed = parsed
-        }
-      } catch {}
-  
-      const created = spawnPlayerFromLayer(this, map, skin, solids, playerOptions)
-      if (created) {
-        this.player = created.player
-        // attach health component using extracted value
-        const health = attachHealthToPlayer(this.player, { max: playerHealth })
-        this.healthHUD = new HealthBarHUD(this)
-        this.healthHUD.create(health.max, health.current)
-        this.healthHUD.attachToCamera(this.cameras.main)
-        
-        health.emitter.on('health-changed', (cur, max) => {
-          this.healthHUD?.updateValues(cur, max)
-        })
-        
-        health.emitter.on('player-died', () => {
-          // simple effect: flash camera
-          this.cameras.main.flash(250, 255, 0, 0)
-        })
-        
-        const dbg = setupPlayerDebug(this, this.player)
-        this.debugGfx = dbg.gfx
-        this.platformsDebugGfx = dbg.platformsGfx
-        this.debugText = dbg.text
-        this.debugCleanup = dbg.cleanup
-        this.debugEnabled = debugStore.enabled
-        this.player.debugEnabled = debugStore.playerCollider && debugStore.enabled
-
-        // Expose this scene to debug tooling so UI controls can act on it
-        try { this.debugStore.phaserScene = this } catch {}
-
-        // Ensure debug teardown when scene shuts down or is destroyed
-        this.events.once('shutdown', () => { this.teardownDebug(); teardownSceneDefaults(this) })
-        this.events.once('destroy', () => { this.teardownDebug(); teardownSceneDefaults(this) })
-
-        if (this.player?.sprite) {
-          startCameraFollow(this, this.player.sprite, {
-            lerp: { x: 0.12, y: 0.18 },
-            deadzone: { fractionX: 0.42, fractionY: 0.5 },
-          })
-        }
-      }
-    }
+    this.spawnPlayerFromMap({ map, solids })
 
     // Ensure enemy animations exist before spawning
     ensureEnemyIdleAnims(this)
@@ -259,11 +107,11 @@ export class StageScene extends Phaser.Scene {
     onSceneTeardown(this, () => { try { enemiesGroup.clear(true, true) } catch {} })
 
     if (this.player?.sprite && enemiesGroup && enemiesGroup.getLength() > 0) {
-        // Damage player on enemy overlap (no physical blocking)
-        this.physics.add.overlap(this.player.sprite, enemiesGroup, (_player, _enemy) => {
-          if (!this.player) return
-          this.player.damage(1)
-        })
+      // Damage player on enemy overlap (no physical blocking)
+      this.physics.add.overlap(this.player.sprite, enemiesGroup, (_player, _enemy) => {
+        if (!this.player) return
+        this.player.damage(1)
+      })
     }
 
     placeDecorations(this, map)
@@ -292,7 +140,256 @@ export class StageScene extends Phaser.Scene {
     }
 
     // Ensure attack animations ready (after animations manager init)
-    ensureAttackAnimationsForSkin(this, getSelectedSkin())
+    ensureAttackAnimationsForSkin(this, this.currentSkinDef.skin)
+  }
+
+  private spawnPlayerFromMap({ map, solids }: { map: Phaser.Tilemaps.Tilemap; solids: Phaser.Physics.Arcade.StaticGroup }): boolean {
+    const debugStore = this.debugStore
+    const skin = this.currentSkinDef.skin
+
+    // Extract health from Tiled map custom property if present
+    let playerHealth = 6 // default
+    const playerOptions: PlayerOptions = {}
+    const playerLayer = map.getObjectLayer('player')
+    
+    if (playerLayer && playerLayer.objects && playerLayer.objects.length > 0) {
+      const playerObj = playerLayer.objects.find(o => (o.name || '').toLowerCase() === 'player') || playerLayer.objects[0]
+      if (playerObj && Array.isArray(playerObj.properties)) {
+        const props = playerObj.properties as Array<{ name: string; value: unknown }>
+        
+        const getProp = (name: string) => props.find(p => p.name === name)
+        const getNumber = (name: string) => {
+          const prop = getProp(name)
+          if (!prop) return undefined
+          if (typeof prop.value === 'number') return prop.value
+          if (typeof prop.value === 'string') {
+            const parsed = Number(prop.value)
+            return Number.isFinite(parsed) ? parsed : undefined
+          }
+          return undefined
+        }
+        
+        const getBoolean = (name: string) => {
+          const prop = getProp(name)
+          if (!prop) return undefined
+          const value = prop.value
+          if (typeof value === 'boolean') return value
+          if (typeof value === 'number') return value !== 0
+          if (typeof value === 'string') {
+            const lower = value.trim().toLowerCase()
+            if (lower === 'true' || lower === 'yes' || lower === 'on') return true
+            if (lower === 'false' || lower === 'no' || lower === 'off') return false
+          }
+          return undefined
+        }
+
+        const healthProp = getNumber('health')
+        if (typeof healthProp === 'number') playerHealth = healthProp
+
+        const extraJumps = getNumber('extraJumps')
+        if (typeof extraJumps === 'number') playerOptions.extraJumps = extraJumps
+        const doubleJumpFlag = getBoolean('doubleJump')
+        if (doubleJumpFlag !== undefined) {
+          playerOptions.extraJumps = doubleJumpFlag
+            ? (playerOptions.extraJumps ?? 1)
+            : 0
+        }
+
+        const wallJumpFlag = getBoolean('wallJump') ?? getBoolean('wallJumpEnabled')
+        if (wallJumpFlag !== undefined) playerOptions.wallJumpEnabled = wallJumpFlag
+        const wallJumpH = getNumber('wallJumpHorizontalSpeed')
+        if (typeof wallJumpH === 'number') playerOptions.wallJumpHorizontalSpeed = wallJumpH
+        const wallJumpV = getNumber('wallJumpVerticalSpeed')
+        if (typeof wallJumpV === 'number') playerOptions.wallJumpVerticalSpeed = wallJumpV
+        const wallGrace = getNumber('wallJumpGraceTime')
+        if (typeof wallGrace === 'number') playerOptions.wallJumpGraceTime = wallGrace
+        const wallSlideSpeed = getNumber('wallSlideSpeed')
+        if (typeof wallSlideSpeed === 'number') playerOptions.wallSlideSpeed = wallSlideSpeed
+      }
+    }
+
+    this.applyPlayerOptionsFromQuery(playerOptions)
+
+    const created = spawnPlayerFromLayer(this, map, skin, solids, playerOptions)
+    if (!created) return false
+
+    this.player = created.player
+    // attach health component using extracted value
+    const health = attachHealthToPlayer(this.player, { max: playerHealth })
+    this.healthHUD = new HealthBarHUD(this)
+    this.healthHUD.create(health.max, health.current)
+    this.healthHUD.attachToCamera(this.cameras.main)
+
+    health.emitter.on('health-changed', (cur, max) => {
+      this.healthHUD?.updateValues(cur, max)
+    })
+
+    health.emitter.on('player-died', () => {
+      // simple effect: flash camera
+      this.cameras.main.flash(250, 255, 0, 0)
+    })
+
+    const dbg = setupPlayerDebug(this, this.player)
+    this.debugGfx = dbg.gfx
+    this.platformsDebugGfx = dbg.platformsGfx
+    this.debugText = dbg.text
+    this.debugCleanup = dbg.cleanup
+    this.debugEnabled = debugStore.enabled
+    this.player.debugEnabled = debugStore.playerCollider && debugStore.enabled
+
+    // Expose this scene to debug tooling so UI controls can act on it
+    try { this.debugStore.phaserScene = this } catch {}
+    try { this.debugStore.selectedSkinId = this.currentSkinDef.id } catch {}
+
+    // Ensure debug teardown when scene shuts down or is destroyed
+    this.events.once('shutdown', () => { this.teardownDebug(); teardownSceneDefaults(this) })
+    this.events.once('destroy', () => { this.teardownDebug(); teardownSceneDefaults(this) })
+
+    if (this.player?.sprite) {
+      startCameraFollow(this, this.player.sprite, {
+        lerp: { x: 0.12, y: 0.18 },
+        deadzone: { fractionX: 0.42, fractionY: 0.5 },
+      })
+    }
+
+    this.syncAttackOverridesForPlayer(this.currentSkinDef)
+    return true
+  }
+
+  private applyPlayerOptionsFromQuery(playerOptions: PlayerOptions): void {
+    try {
+      const params = new URLSearchParams(window.location.search)
+      if (params.has('doubleJump')) {
+        const value = params.get('doubleJump') || ''
+        if (value === '' || value.toLowerCase() === 'true' || value === '1') {
+          playerOptions.extraJumps = playerOptions.extraJumps ?? 1
+        } else if (value.toLowerCase() === 'false' || value === '0') {
+          playerOptions.extraJumps = 0
+        } else {
+          const parsed = Number(value)
+          if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
+        }
+      }
+      if (params.has('extraJumps')) {
+        const parsed = Number(params.get('extraJumps'))
+        if (Number.isFinite(parsed)) playerOptions.extraJumps = parsed
+      }
+      if (params.has('wallJump')) {
+        const value = (params.get('wallJump') || '').toLowerCase()
+        if (value === '' || value === 'true' || value === '1' || value === 'on') {
+          playerOptions.wallJumpEnabled = true
+        } else if (value === 'false' || value === '0' || value === 'off') {
+          playerOptions.wallJumpEnabled = false
+        }
+      }
+      if (params.has('wallJumpH')) {
+        const parsed = Number(params.get('wallJumpH'))
+        if (Number.isFinite(parsed)) playerOptions.wallJumpHorizontalSpeed = parsed
+      }
+      if (params.has('wallJumpV')) {
+        const parsed = Number(params.get('wallJumpV'))
+        if (Number.isFinite(parsed)) playerOptions.wallJumpVerticalSpeed = parsed
+      }
+      if (params.has('wallGrace')) {
+        const parsed = Number(params.get('wallGrace'))
+        if (Number.isFinite(parsed)) playerOptions.wallJumpGraceTime = parsed
+      }
+      if (params.has('wallSlide')) {
+        const parsed = Number(params.get('wallSlide'))
+        if (Number.isFinite(parsed)) playerOptions.wallSlideSpeed = parsed
+      }
+    } catch {}
+  }
+
+  getCurrentSkinDefinition(): PlayerSkinDefinition {
+    return this.currentSkinDef
+  }
+
+  async changePlayerSkin(target: string | PlayerSkinDefinition, options?: { overrides?: AttackOverrideConfig | null }): Promise<boolean> {
+    if (!this.player) return false
+    const nextDef = typeof target === 'string'
+      ? resolvePlayerSkinDefinition(target)
+      : target
+
+    const existingOverrides = getAttackOverridesForSkin(nextDef.skin)
+
+    if (options?.overrides !== undefined) {
+      setAttackOverridesForSkin(nextDef.skin, options.overrides)
+    } else if (!existingOverrides && nextDef.defaultOverrides) {
+      setAttackOverridesForSkin(nextDef.skin, nextDef.defaultOverrides)
+    }
+
+    // If we're already on this skin and no player sprite, nothing to do
+    if (this.currentSkinDef.id === nextDef.id) {
+      const overridesProvided = options?.overrides !== undefined
+      if (!overridesProvided) {
+        // Still allow refresh to rebuild assets (useful when tweaking defaults)
+        await this.prepareSkinAssetsFor(nextDef)
+        Player.createAnimations(this, nextDef.skin)
+        this.player.applySkin(nextDef.skin)
+        ensureAttackAnimationsForSkin(this, nextDef.skin)
+      }
+      this.syncAttackOverridesForPlayer(nextDef)
+      this.currentSkinDef = nextDef
+      return true
+    }
+
+    await this.prepareSkinAssetsFor(nextDef)
+    Player.createAnimations(this, nextDef.skin)
+    this.player.applySkin(nextDef.skin)
+    ensureAttackAnimationsForSkin(this, nextDef.skin)
+    this.syncAttackOverridesForPlayer(nextDef)
+    this.currentSkinDef = nextDef
+    return true
+  }
+
+  private async prepareSkinAssetsFor(def: PlayerSkinDefinition): Promise<void> {
+    await this.waitForLoaderIdle()
+
+    const keysToRemove = new Set<string>()
+    if (this.currentSkinDef?.skin) {
+      for (const key of getPlayerSkinTextureKeys(this.currentSkinDef.skin)) {
+        keysToRemove.add(key)
+      }
+    }
+    for (const key of getPlayerSkinTextureKeys(def.skin)) {
+      keysToRemove.add(key)
+    }
+
+    for (const key of keysToRemove) {
+      if (this.textures.exists(key)) {
+        this.textures.remove(key)
+      }
+    }
+
+    Player.preload(this, def.skin)
+    preloadAttackAssetsForSkin(this, def.skin)
+
+    await new Promise<void>((resolve) => {
+      this.load.once(Phaser.Loader.Events.COMPLETE, () => resolve())
+      if (!this.load.isLoading()) {
+        this.load.start()
+      }
+    })
+  }
+
+  private syncAttackOverridesForPlayer(def: PlayerSkinDefinition): void {
+    if (!this.player) return
+    const strategy = getAttackStrategyForSkin(def.skin)
+    const overrides = getAttackOverridesForSkin(def.skin)
+    if (typeof strategy.resetSkinOverrides === 'function') {
+      strategy.resetSkinOverrides({ skin: def.skin, player: this.player as any })
+    }
+    if (overrides && typeof strategy.applySkinOverrides === 'function') {
+      strategy.applySkinOverrides(overrides, { skin: def.skin, player: this.player as any })
+    }
+  }
+
+  private async waitForLoaderIdle(): Promise<void> {
+    if (!this.load.isLoading()) return
+    await new Promise<void>((resolve) => {
+      this.load.once(Phaser.Loader.Events.COMPLETE, () => resolve())
+    })
   }
 
   override update() {

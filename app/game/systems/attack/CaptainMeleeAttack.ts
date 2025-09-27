@@ -1,30 +1,35 @@
 import Phaser from 'phaser'
 import { applyEnemyHit } from '~/game/enemies/ai'
 import { ensureTinyWhiteTexture } from '~/game/systems/objects'
-import type { AttackHitConfig, AttackStrategy, PlayerLike } from './types'
+import type { AttackHitConfig, AttackOverrideConfig, AttackOverrideContext, AttackStrategy, PlayerLike } from './types'
 
 type MeleeRange = { widthFactor: number; heightFactor: number; forwardFactor: number; yOffset?: number }
-const captainMeleeRange: MeleeRange = {
+const defaultCaptainMeleeRange: MeleeRange = {
   widthFactor: 0.9,
   heightFactor: 0.8,
   forwardFactor: 0.55,
   yOffset: 2,
 }
+let globalCaptainMeleeRange: MeleeRange = { ...defaultCaptainMeleeRange }
 
 export function configureCaptainMeleeRange(overrides: Partial<MeleeRange>) {
-  Object.assign(captainMeleeRange, overrides)
+  globalCaptainMeleeRange = { ...globalCaptainMeleeRange, ...overrides }
 }
 
 type KnockbackConfig = { x: number; y: number }
 const defaultCaptainSwordKnockback: KnockbackConfig = { x: 220, y: -100 }
-let captainSwordKnockback: KnockbackConfig = { ...defaultCaptainSwordKnockback }
+let globalCaptainSwordKnockback: KnockbackConfig = { ...defaultCaptainSwordKnockback }
 export function configureCaptainSwordKnockback(overrides: Partial<KnockbackConfig>) {
-  captainSwordKnockback = { ...captainSwordKnockback, ...overrides }
+  globalCaptainSwordKnockback = { ...globalCaptainSwordKnockback, ...overrides }
 }
 
-let defaultCaptainCritChance = 0.75
-let defaultCaptainCritMultiplier = 2
-let defaultCaptainCritKnockbackMultiplier = 1.2
+type CaptainCritConfig = { chance: number; multiplier: number; knockbackMultiplier: number }
+const defaultCaptainCrit: CaptainCritConfig = {
+  chance: 0.75,
+  multiplier: 2,
+  knockbackMultiplier: 1.2,
+}
+let globalCaptainCrit: CaptainCritConfig = { ...defaultCaptainCrit }
 
 const defaultAttackHitConfig: AttackHitConfig = {
   maxHitsPerEnemy: 1,
@@ -51,6 +56,10 @@ type CaptainMeleeState = {
 export class CaptainMeleeAttack implements AttackStrategy {
   private state = new WeakMap<PlayerLike, CaptainMeleeState>()
   private hitConfig: AttackHitConfig = { ...defaultAttackHitConfig }
+  private range: MeleeRange = { ...globalCaptainMeleeRange }
+  private knockback: KnockbackConfig = { ...globalCaptainSwordKnockback }
+  private damageMultipliers = { ground: 1, air: 1 }
+  private critDefaults: CaptainCritConfig = { ...globalCaptainCrit }
 
   shouldArmPlayer(): boolean {
     return true
@@ -72,9 +81,9 @@ export class CaptainMeleeAttack implements AttackStrategy {
         airComboWindowUntil: 0,
         pendingDamage: 1,
         pendingIsCrit: false,
-        critChance: defaultCaptainCritChance,
-        critMultiplier: defaultCaptainCritMultiplier,
-        critKnockbackMultiplier: defaultCaptainCritKnockbackMultiplier,
+        critChance: this.critDefaults.chance,
+        critMultiplier: this.critDefaults.multiplier,
+        critKnockbackMultiplier: this.critDefaults.knockbackMultiplier,
       }
       this.state.set(player, state)
     }
@@ -82,12 +91,13 @@ export class CaptainMeleeAttack implements AttackStrategy {
   }
 
   private getDamageFor(type: 'ground' | 'air', comboStep: number) {
+    let base: number
     if (type === 'ground') {
-      if (comboStep >= 3) return 20
-      return 10
+      base = comboStep >= 3 ? 20 : 10
+      return base * this.damageMultipliers.ground
     }
-    if (comboStep >= 2) return 20
-    return 10
+    base = comboStep >= 2 ? 20 : 10
+    return base * this.damageMultipliers.air
   }
 
   configureCritical(opts: { chance?: number; multiplier?: number; knockbackMultiplier?: number }, player?: PlayerLike) {
@@ -97,9 +107,16 @@ export class CaptainMeleeAttack implements AttackStrategy {
       if (typeof opts.multiplier === 'number') st.critMultiplier = Math.max(1, opts.multiplier)
       if (typeof opts.knockbackMultiplier === 'number') st.critKnockbackMultiplier = Math.max(0, opts.knockbackMultiplier)
     } else {
-      if (typeof opts.chance === 'number') defaultCaptainCritChance = Math.max(0, Math.min(1, opts.chance))
-      if (typeof opts.multiplier === 'number') defaultCaptainCritMultiplier = Math.max(1, opts.multiplier)
-      if (typeof opts.knockbackMultiplier === 'number') defaultCaptainCritKnockbackMultiplier = Math.max(0, opts.knockbackMultiplier)
+      if (typeof opts.chance === 'number' && Number.isFinite(opts.chance)) {
+        globalCaptainCrit.chance = Math.max(0, Math.min(1, opts.chance))
+      }
+      if (typeof opts.multiplier === 'number' && Number.isFinite(opts.multiplier)) {
+        globalCaptainCrit.multiplier = Math.max(1, opts.multiplier)
+      }
+      if (typeof opts.knockbackMultiplier === 'number' && Number.isFinite(opts.knockbackMultiplier)) {
+        globalCaptainCrit.knockbackMultiplier = Math.max(0, opts.knockbackMultiplier)
+      }
+      this.critDefaults = { ...globalCaptainCrit }
     }
   }
 
@@ -287,7 +304,7 @@ export class CaptainMeleeAttack implements AttackStrategy {
           const dir = playerSprite.flipX ? -1 : 1
           const pendingDamage = Math.max(1, Math.round(this.getState(player).pendingDamage))
           const st2 = this.getState(player)
-          applyEnemyHit(scene, enemy, captainSwordKnockback, dir, 0.25, pendingDamage, {
+          applyEnemyHit(scene, enemy, this.knockback, dir, 0.25, pendingDamage, {
             critical: st2.pendingIsCrit,
             critKnockbackMultiplier: st2.critKnockbackMultiplier,
           })
@@ -301,14 +318,15 @@ export class CaptainMeleeAttack implements AttackStrategy {
 
     const bw = Math.max(1, body.width)
     const bh = Math.max(1, body.height)
-    const hbW = Math.round(bw * captainMeleeRange.widthFactor)
-    const hbH = Math.round(bh * captainMeleeRange.heightFactor)
+  const hbW = Math.round(bw * this.range.widthFactor)
+  const hbH = Math.round(bh * this.range.heightFactor)
     const hbBody3 = hitbox.body as Phaser.Physics.Arcade.Body | null
     if (hbBody3) hbBody3.setSize(hbW, hbH, true)
-    const xoff = Math.round(bw / 2 + hbW * captainMeleeRange.forwardFactor)
+  const xoff = Math.round(bw / 2 + hbW * this.range.forwardFactor)
     const facing = playerSprite.flipX ? -1 : 1
-    hitbox.setPosition(playerSprite.x + facing * xoff, playerSprite.y + (captainMeleeRange.yOffset ?? 0))
-    swordEffect.setPosition(playerSprite.x + facing * xoff, playerSprite.y + (captainMeleeRange.yOffset ?? 0))
+  const yOffset = this.range.yOffset ?? 0
+  hitbox.setPosition(playerSprite.x + facing * xoff, playerSprite.y + yOffset)
+  swordEffect.setPosition(playerSprite.x + facing * xoff, playerSprite.y + yOffset)
     swordEffect.setFlipX(playerSprite.flipX)
 
     if (hbBody3) hbBody3.enable = false
@@ -348,6 +366,56 @@ export class CaptainMeleeAttack implements AttackStrategy {
     return true
   }
 
+  resetSkinOverrides(_context?: AttackOverrideContext): void {
+    this.hitConfig = { ...defaultAttackHitConfig }
+    this.range = { ...globalCaptainMeleeRange }
+    this.knockback = { ...globalCaptainSwordKnockback }
+    this.damageMultipliers = { ground: 1, air: 1 }
+    this.critDefaults = { ...globalCaptainCrit }
+  }
+
+  applySkinOverrides(overrides: AttackOverrideConfig, context?: AttackOverrideContext): void {
+    if (overrides.hitConfig) {
+      this.configureHitBehavior(overrides.hitConfig)
+    }
+
+    const melee = overrides.melee
+    if (melee?.range) {
+      this.range = { ...this.range, ...melee.range }
+    }
+    if (melee?.knockback) {
+      this.knockback = { ...this.knockback, ...melee.knockback }
+    }
+    if (melee?.damage) {
+      const { groundMultiplier, airMultiplier } = melee.damage
+      if (typeof groundMultiplier === 'number' && Number.isFinite(groundMultiplier)) {
+        this.damageMultipliers.ground = Math.max(0, groundMultiplier)
+      }
+      if (typeof airMultiplier === 'number' && Number.isFinite(airMultiplier)) {
+        this.damageMultipliers.air = Math.max(0, airMultiplier)
+      }
+    }
+    if (melee?.crit) {
+      const { chance, multiplier, knockbackMultiplier } = melee.crit
+      if (typeof chance === 'number' && Number.isFinite(chance)) {
+        this.critDefaults.chance = Math.max(0, Math.min(1, chance))
+      }
+      if (typeof multiplier === 'number' && Number.isFinite(multiplier)) {
+        this.critDefaults.multiplier = Math.max(1, multiplier)
+      }
+      if (typeof knockbackMultiplier === 'number' && Number.isFinite(knockbackMultiplier)) {
+        this.critDefaults.knockbackMultiplier = Math.max(0, knockbackMultiplier)
+      }
+    }
+
+    if (context?.player) {
+      const st = this.getState(context.player)
+      st.critChance = this.critDefaults.chance
+      st.critMultiplier = this.critDefaults.multiplier
+      st.critKnockbackMultiplier = this.critDefaults.knockbackMultiplier
+    }
+  }
+
   update(player: PlayerLike): void {
     const s = player.sprite
     const st = this.getState(player)
@@ -359,12 +427,13 @@ export class CaptainMeleeAttack implements AttackStrategy {
       const body = s.body as Phaser.Physics.Arcade.Body
       const bw = Math.max(1, body.width)
       const bh = Math.max(1, body.height)
-      const hbW = Math.round(bw * captainMeleeRange.widthFactor)
-      const xoff = Math.round(bw / 2 + hbW * captainMeleeRange.forwardFactor)
+      const hbW = Math.round(bw * this.range.widthFactor)
+      const xoff = Math.round(bw / 2 + hbW * this.range.forwardFactor)
       const facing = s.flipX ? -1 : 1
-      hitbox.setPosition(s.x + facing * xoff, s.y + (captainMeleeRange.yOffset ?? 0))
+      const yOffset = this.range.yOffset ?? 0
+      hitbox.setPosition(s.x + facing * xoff, s.y + yOffset)
       if (swordEffect && swordEffect.visible) {
-        swordEffect.setPosition(s.x + facing * xoff, s.y + (captainMeleeRange.yOffset ?? 0))
+        swordEffect.setPosition(s.x + facing * xoff, s.y + yOffset)
         swordEffect.setFlipX(s.flipX)
       }
     }
